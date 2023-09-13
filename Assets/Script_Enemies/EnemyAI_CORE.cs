@@ -44,8 +44,6 @@ public class EnemyAI_CORE : MonoBehaviour
     public Action playerMissedEvent = () => Debug.Log("MISSED");
     /// <summary>プレイヤー攻撃時に呼び出されるデリゲート</summary>
     public Action<Animator> attackingEvent;
-    /// <summary>基底クラスのStartメソッドが呼ばれたときに呼ばれる</summary>
-    public Action onStartFuncCalledEvent = () => Debug.Log("startFUNC");
     /// <summary>移動モード</summary>
     public enum MoveMode
     {
