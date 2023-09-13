@@ -7,6 +7,8 @@ public class FlyingEye_AI : EnemyAI_CORE
     [SerializeField] Material _playerCapturedMat;
     /// <summary>プレイヤー未捕捉時のマテリアル</summary>
     [SerializeField] Material _defaultMat;
+    /// <summary>死亡時のドロップアイテム</summary>
+    [SerializeField] GameObject _dropObj;
     void PlayerCapturedEvent()
     {
         this.gameObject.GetComponent<Renderer>().material = _playerCapturedMat;
@@ -15,6 +17,8 @@ public class FlyingEye_AI : EnemyAI_CORE
     {
         this.gameObject.GetComponent<Renderer>().material = _defaultMat;
     }
+    /// <summary>攻撃行動メソッド</summary>
+    /// <param name="anim"></param>
     void AttackingEvent(Animator anim)
     {
         //攻撃パターンの擬似乱数による選択
@@ -36,16 +40,28 @@ public class FlyingEye_AI : EnemyAI_CORE
                 break;
         }
     }
+    /// <summary>死亡行動メソッド</summary>
+    void DeathEvent(Animator anim)
+    {
+        anim.Play("FlyingEye_Death");
+        //ドロップアイテムの生成
+        var go = GameObject.Instantiate(_dropObj);
+        go.transform.position = this.transform.position;
+        //破棄
+        Destroy(this.gameObject);
+    }
     private void OnEnable()
     {
         base.playerCapturedEvent += PlayerCapturedEvent;
         base.playerMissedEvent += PlayerMissedEvent;
         base.attackingEvent += AttackingEvent;
+        base.deathEvent += DeathEvent;
     }
     private void OnDisable()
     {
         base.playerCapturedEvent += PlayerCapturedEvent;
         base.playerMissedEvent -= PlayerMissedEvent;
         base.attackingEvent -= AttackingEvent;
+        base.deathEvent -= DeathEvent;
     }
 }

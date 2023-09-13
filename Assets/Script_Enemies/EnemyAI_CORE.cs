@@ -37,7 +37,7 @@ public class EnemyAI_CORE : MonoBehaviour
     /// <summary>ダメージをくらった時に呼び出されるデリゲート</summary>
     public Action damagedEvent = () => Debug.Log("DAMAGED");
     /// <summary>死んだときに呼び出されるデリゲート</summary>
-    public Action deathEvent = () => Debug.Log("DEATH");
+    public Action<Animator> deathEvent;
     /// <summary>プレイヤー捕捉時に呼び出されるデリゲート</summary>
     public Action playerCapturedEvent = () => Debug.Log("CAPTURED");
     /// <summary>プレイヤーを見失った時に飛び出されるデリゲート</summary>
@@ -74,9 +74,7 @@ public class EnemyAI_CORE : MonoBehaviour
         if (_hp <= 0)
         {
             //デリゲート呼び出し
-            deathEvent();
-            //破棄
-            Destroy(this.gameObject);
+            deathEvent(_anim);
         }
         //パトロール→発見→追跡→攻撃
         //パトロール↓
