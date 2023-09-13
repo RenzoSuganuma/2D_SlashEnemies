@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] float _playerHealth;
     [SerializeField] float _playerStamina;
+    [SerializeField] Material _pDefaultMaterial;
+    [SerializeField] Material _pSpawnMaterial;
+    private void Start()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().material = _pSpawnMaterial;
+    }
     /// <summary>体力を更新するメソッド。引数に加算する値を代入</summary>
     /// <param name="health"></param>
     public void ModifyHealth(float health)
