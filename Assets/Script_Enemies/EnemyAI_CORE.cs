@@ -3,9 +3,9 @@ using UnityEditor;
 using UnityEngine;
 [RequireComponent (typeof(Animator))]
 [RequireComponent (typeof(Rigidbody2D))]
-public class EnemyAI_CORE1 : MonoBehaviour
+/// <summary> 敵キャラのAIのコア </summary>
+public class EnemyAI_CORE : MonoBehaviour
 {
-    Animator _anim;
     Rigidbody2D _rb2d;
     SpriteRenderer _sr;
     //公開フィールド
@@ -49,13 +49,15 @@ public class EnemyAI_CORE1 : MonoBehaviour
     }
     private void Start()
     {
-        _anim = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
         _rb2d = GetComponent<Rigidbody2D>();
         //移動モードによって重力スケールが変動
         _rb2d.gravityScale = (_moveMode == MoveMode.Fly) ? 0 : 1;
+        _rb2d.freezeRotation = true;
         //目標座標の設定[乱数]
         RePath();
+        //RayCastの影響を受けないようにする
+        this.gameObject.layer = 2;
     }
     private void FixedUpdate()
     {
@@ -89,6 +91,7 @@ public class EnemyAI_CORE1 : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction, Color.green);
             if (hit2d.collider)
             {
+                Debug.Log($"レイヤー：{hit2d.collider.gameObject.layer}");
                 if (hit2d.collider.gameObject.layer == _repathLayer)
                 {
                     RePath();

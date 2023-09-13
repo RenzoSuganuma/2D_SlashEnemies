@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 43727681}
   - component: {fileID: 43727680}
   - component: {fileID: 43727679}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Floor (7)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -841,7 +841,7 @@ GameObject:
   - component: {fileID: 495755722}
   - component: {fileID: 495755721}
   - component: {fileID: 495755720}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Floor (12)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1142,7 +1142,7 @@ GameObject:
   - component: {fileID: 687281455}
   - component: {fileID: 687281454}
   - component: {fileID: 687281453}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Floor (14)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1261,6 +1261,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &824498482
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: _playerCapturedMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 9114501e655e3c34ba88dcf714b88671, type: 2}
+    - target: {fileID: 5387540324673731659, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_Name
+      value: FlyingEye
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
 --- !u!1 &837047832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,6 +1463,7 @@ GameObject:
   - component: {fileID: 925003051}
   - component: {fileID: 925003053}
   - component: {fileID: 925003052}
+  - component: {fileID: 925003054}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1483,6 +1545,50 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &925003054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925003050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &980568766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,7 +1600,7 @@ GameObject:
   - component: {fileID: 980568769}
   - component: {fileID: 980568768}
   - component: {fileID: 980568767}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Floor (18)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1846,7 +1952,7 @@ Transform:
   m_GameObject: {fileID: 1044529374}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.46, y: 0.23, z: 0}
+  m_LocalPosition: {x: 3.46, y: 29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2072,7 +2178,7 @@ GameObject:
   - component: {fileID: 1121561863}
   - component: {fileID: 1121561862}
   - component: {fileID: 1121561861}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Floor (17)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2510,7 +2616,7 @@ GameObject:
   - component: {fileID: 1786509018}
   - component: {fileID: 1786509017}
   - component: {fileID: 1786509016}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Floor (15)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2640,7 +2746,7 @@ GameObject:
   - component: {fileID: 1807990683}
   - component: {fileID: 1807990682}
   - component: {fileID: 1807990681}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Floor (13)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2801,7 +2907,7 @@ GameObject:
   - component: {fileID: 2109518430}
   - component: {fileID: 2109518429}
   - component: {fileID: 2109518428}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Floor (16)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2944,3 +3050,4 @@ SceneRoots:
   - {fileID: 1722773318}
   - {fileID: 43727681}
   - {fileID: 1274473011}
+  - {fileID: 824498482}

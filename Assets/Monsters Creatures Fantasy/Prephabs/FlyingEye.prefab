@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7717319093928095684}
   - component: {fileID: 5814568763563169744}
   - component: {fileID: 3421399574789802399}
+  - component: {fileID: 4687681731506730386}
   - component: {fileID: 5515592355950333189}
   - component: {fileID: 947675571548739356}
-  - component: {fileID: 3215724386196080819}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FlyingEye
   m_TagString: Damager
   m_Icon: {fileID: 0}
@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5387540324673731659}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.04, y: 0.28, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5814568763563169744
 SpriteRenderer:
@@ -109,6 +109,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4687681731506730386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5387540324673731659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff637eaea720bf34bae67eaf387d9396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hp: 10
+  _ms: 5
+  _patrollRadius: 4
+  _playerCaptureDistance: 3
+  _attackDistance: 2
+  _repathLayer: 6
+  _moveMode: 1
+  _isPlayerFound: 0
 --- !u!58 &5515592355950333189
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,21 +191,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3215724386196080819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5387540324673731659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c46a14ac71eef4d867360ddf343d28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 10
-  _moveSpeed: 10
-  _moveMode: 1
-  _patrollRadius: 4
-  _playerCaptureDistance: 3
-  _attackDistance: 2

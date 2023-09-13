@@ -1,6 +1,6 @@
 using UnityEngine;
 /// <summary>”ò‚Ô–Ú‹Ê‚Ì“G‚ÌƒNƒ‰ƒX</summary>
-public class EnemyAI_Core : MonoBehaviour
+class EnemyAI_arcived : MonoBehaviour
 {
     Animator _anim;
     Rigidbody2D _rb2d;
