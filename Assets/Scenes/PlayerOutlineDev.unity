@@ -2574,8 +2574,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerHealth: 100
   _playerStamina: 100
-  _playerSpawnMat: {fileID: 2100000, guid: fcc527ed886586c40a4ea285c7fc60f1, type: 2}
-  _playerDefaultMat: {fileID: 2100000, guid: 1a2f5af855809f843b63d1deeecab2c6, type: 2}
 --- !u!4 &1722773318
 Transform:
   m_ObjectHideFlags: 0
@@ -3034,6 +3032,6 @@ SceneRoots:
   - {fileID: 489689501}
   - {fileID: 1177129133}
   - {fileID: 980568769}
+  - {fileID: 1722773318}
   - {fileID: 43727681}
   - {fileID: 1274473011}
-  - {fileID: 1722773318}

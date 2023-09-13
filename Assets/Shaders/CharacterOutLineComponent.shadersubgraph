@@ -12,11 +12,7 @@
     ],
     "m_Keywords": [],
     "m_Dropdowns": [],
-    "m_CategoryData": [
-        {
-            "m_Id": "5f3355de53e34f7a9ab208f2b6fd96ee"
-        }
-    ],
+    "m_CategoryData": [],
     "m_Nodes": [
         {
             "m_Id": "e7e16ee256dd4686a6151f67c00f9c55"
@@ -722,10 +718,10 @@
     "m_Guid": {
         "m_GuidSerialized": "1160512d-9b24-4f45-b0cb-0c02205d051d"
     },
-    "m_Name": "mainTex",
+    "m_Name": "MainTex",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "mainTex",
-    "m_DefaultReferenceName": "_mainTex",
+    "m_RefNameGeneratedByDisplayName": "MainTex",
+    "m_DefaultReferenceName": "_MainTex",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1021,10 +1017,10 @@
     "m_Guid": {
         "m_GuidSerialized": "fad57e2e-d986-4f22-942e-824efdb53069"
     },
-    "m_Name": "outLineColor",
+    "m_Name": "OutLineColor",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "outLineColor",
-    "m_DefaultReferenceName": "_outLineColor",
+    "m_RefNameGeneratedByDisplayName": "OutLineColor",
+    "m_DefaultReferenceName": "_OutLineColor",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1393,21 +1389,6 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
-    "m_ObjectId": "5f3355de53e34f7a9ab208f2b6fd96ee",
-    "m_Name": "",
-    "m_ChildObjectList": [
-        {
-            "m_Id": "1d40b9c80b304496af6e617d9d50c185"
-        },
-        {
-            "m_Id": "37311b8978554d5bb8ff2fbd6d5f4bff"
-        }
-    ]
 }
 
 {
@@ -1790,7 +1771,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "8a6f0c0e86e14eb5a0f7e17330fb3210",
     "m_Id": 0,
-    "m_DisplayName": "outLineColor",
+    "m_DisplayName": "OutLineColor",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2340,7 +2321,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "c901f9977eca4d9bbac1ac43073dd115",
     "m_Id": 0,
-    "m_DisplayName": "mainTex",
+    "m_DisplayName": "MainTex",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2368,7 +2349,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "cb7bbff0d2e44da5ac82f7518a068cc1",
     "m_Id": 0,
-    "m_DisplayName": "mainTex",
+    "m_DisplayName": "MainTex",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
