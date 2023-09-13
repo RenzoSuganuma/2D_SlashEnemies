@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d1cd9bdd15b4be9458596caf6453e06c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,6 +129,8 @@ MonoBehaviour:
   _repathLayer: 6
   _moveMode: 1
   _isPlayerFound: 0
+  _playerCapturedMat: {fileID: 2100000, guid: 9114501e655e3c34ba88dcf714b88671, type: 2}
+  _defaultMat: {fileID: 2100000, guid: d1cd9bdd15b4be9458596caf6453e06c, type: 2}
 --- !u!58 &5515592355950333189
 CircleCollider2D:
   m_ObjectHideFlags: 0

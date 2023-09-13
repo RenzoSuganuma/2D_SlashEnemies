@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 [RequireComponent (typeof(Animator))]
@@ -6,6 +7,7 @@ using UnityEngine;
 /// <summary> 敵キャラのAIのコア </summary>
 public class EnemyAI_CORE : MonoBehaviour
 {
+    Animator _anim;
     Rigidbody2D _rb2d;
     SpriteRenderer _sr;
     //公開フィールド
@@ -27,9 +29,10 @@ public class EnemyAI_CORE : MonoBehaviour
     /// <summary>目標の座標への”ベクトル”</summary>
     Vector3 _targetPath = Vector3.zero;
     /// <summary>現状のプレイヤー捕捉フラグ</summary>
-    public bool _isPlayerFound = false;
+    bool _isPlayerFound = false;
     /// <summary>以前のプレイヤー捕捉フラグ</summary>
     bool _pisPlayerFound = false;
+    public bool _attacked = false;
     //デリゲート
     /// <summary>ダメージをくらった時に呼び出されるデリゲート</summary>
     public Action damagedEvent = () => Debug.Log("DAMAGED");
@@ -40,7 +43,9 @@ public class EnemyAI_CORE : MonoBehaviour
     /// <summary>プレイヤーを見失った時に飛び出されるデリゲート</summary>
     public Action playerMissedEvent = () => Debug.Log("MISSED");
     /// <summary>プレイヤー攻撃時に呼び出されるデリゲート</summary>
-    public Action attackingEvent = () => Debug.Log("ATTACK");
+    public Action<Animator> attackingEvent;
+    /// <summary>基底クラスのStartメソッドが呼ばれたときに呼ばれる</summary>
+    public Action onStartFuncCalledEvent = () => Debug.Log("startFUNC");
     /// <summary>移動モード</summary>
     public enum MoveMode
     {
@@ -51,6 +56,7 @@ public class EnemyAI_CORE : MonoBehaviour
     {
         _sr = GetComponent<SpriteRenderer>();
         _rb2d = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
         //移動モードによって重力スケールが変動
         _rb2d.gravityScale = (_moveMode == MoveMode.Fly) ? 0 : 1;
         _rb2d.freezeRotation = true;
@@ -117,7 +123,6 @@ public class EnemyAI_CORE : MonoBehaviour
                 playerCapturedEvent();
                 _pisPlayerFound = true;
             }
-            _sr.color = Color.red;
             var this2player = GameObject.FindGameObjectWithTag("Player").transform.position - this.gameObject.transform.position;
             //移動モードによってベクトルを変更
             switch (_moveMode)
@@ -136,7 +141,6 @@ public class EnemyAI_CORE : MonoBehaviour
         }
         else
         {
-            _sr.color = Color.white;
             _isPlayerFound = false;
             //デリゲート呼び出し
             if (!_isPlayerFound && _pisPlayerFound)
@@ -147,10 +151,12 @@ public class EnemyAI_CORE : MonoBehaviour
         }
         //攻撃処理
         if (_isPlayerFound && Vector2.Distance(this.gameObject.transform.position,
-            GameObject.FindGameObjectWithTag("Player").transform.position) < _attackDistance)
+            GameObject.FindGameObjectWithTag("Player").transform.position) < _attackDistance && !_attacked)
         {
             //デリゲート呼び出し
-            attackingEvent();
+            attackingEvent(_anim);
+            _attacked = true;
+            StartCoroutine(WaitForEndOfAttack(3));
         }
         #endregion
     }
@@ -203,5 +209,13 @@ public class EnemyAI_CORE : MonoBehaviour
         Gizmos.DrawWireSphere(this.gameObject.transform.position, _playerCaptureDistance);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.gameObject.transform.position, _attackDistance);
+    }
+    /// <summary>攻撃インターバルコルーチン。攻撃フラグをfalseにしてフラグを倒す</summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    IEnumerator WaitForEndOfAttack(float s)
+    {
+        yield return new WaitForSeconds(s);
+        _attacked = false;
     }
 }
