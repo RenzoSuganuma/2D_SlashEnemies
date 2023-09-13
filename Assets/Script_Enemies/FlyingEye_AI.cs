@@ -9,10 +9,12 @@ public class FlyingEye_AI : EnemyAI_CORE
     [SerializeField] Material _defaultMat;
     /// <summary>死亡時のドロップアイテム</summary>
     [SerializeField] GameObject _dropObj;
+    /// <summary>プレイヤー捕捉時行動</summary>
     void PlayerCapturedEvent()
     {
         this.gameObject.GetComponent<Renderer>().material = _playerCapturedMat;
     }
+    /// <summary>プレイヤー喪失時行動</summary>
     void PlayerMissedEvent()
     {
         this.gameObject.GetComponent<Renderer>().material = _defaultMat;
