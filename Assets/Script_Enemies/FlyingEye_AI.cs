@@ -26,6 +26,7 @@ public class FlyingEye_AI : EnemyAI_CORE
         //攻撃パターンの擬似乱数による選択
         switch ((UnityEngine.Random.Range(0, 100) % 100) / 10)
         {
+            //いい塩梅の無作為抽出？
             case 0:
             case 1:
             case 2:
