@@ -1,4 +1,5 @@
 using UnityEngine;
+//sdasdadada
 /// <summary>”ò‚Ô–Ú‹Ê‚Ì“G‚ÌƒNƒ‰ƒX</summary>
 class EnemyAI_arcived : MonoBehaviour
 {
