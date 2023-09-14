@@ -1270,9 +1270,45 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: _dp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: _hp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: _ms
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: _eDatC
+      value: 
+      objectReference: {fileID: 11400000, guid: f37746c8c1455a94487312dc44b984ea, type: 2}
+    - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: _eData
+      value: 
+      objectReference: {fileID: 11400000, guid: f37746c8c1455a94487312dc44b984ea, type: 2}
+    - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
       propertyPath: _dropObj
       value: 
       objectReference: {fileID: 7422438642359979986, guid: 44cfd6ca23b562c4da32e41bfbae2555, type: 3}
+    - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: _repathLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: _patrollRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: _attackDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687681731506730386, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
+      propertyPath: _playerCaptureDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5387540324673731659, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
       propertyPath: m_Name
       value: FlyingEye

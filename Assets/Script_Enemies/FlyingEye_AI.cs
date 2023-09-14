@@ -61,6 +61,7 @@ public class FlyingEye_AI : EnemyAI_CORE
     }
     private void OnEnable()
     {
+        //ƒfƒŠƒQ[ƒg“o˜^
         base.playerCapturedEvent += PlayerCapturedEvent;
         base.playerMissedEvent += PlayerMissedEvent;
         base.attackingEvent += AttackingEvent;
@@ -69,6 +70,7 @@ public class FlyingEye_AI : EnemyAI_CORE
     }
     private void OnDisable()
     {
+        //ƒfƒŠƒQ[ƒg“o˜^‰ğœ
         base.playerCapturedEvent += PlayerCapturedEvent;
         base.playerMissedEvent -= PlayerMissedEvent;
         base.attackingEvent -= AttackingEvent;

@@ -92,9 +92,7 @@ public class PlayerPysicsController : MonoBehaviour, PlayerInputs.IPlayerActions
             _pVel = _iMove.normalized * _playerMoveSpeed;
         }
     }
-    /// <summary>
-    /// アニメーションイベントで呼び出しされる
-    /// </summary>
+    /// <summary>アニメーションイベントで呼び出しされる</summary>
     private void PlayerJumpSequence()
     {
         //物理的に打ち上げる

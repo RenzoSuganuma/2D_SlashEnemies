@@ -10,30 +10,36 @@ public class EnemyAI_CORE : MonoBehaviour
     Animator _anim;
     Rigidbody2D _rb2d;
     SpriteRenderer _sr;
-    //公開フィールド
-    /// <summary>体力</summary>
-    [SerializeField] float _hp;
-    /// <summary>移動速度</summary>
-    [SerializeField] float _ms;
+    #region 公開フィールド
     //AIフィールド
+    /// <summary>敵データ</summary>
+    [SerializeField] EnemyDataContainer _eData;
+    /// <summary>体力</summary>
+    float _hp;
+    /// <summary>移動速度</summary>
+    float _ms;
     /// <summary>巡回の半径</summary>
-    [SerializeField] float _patrollRadius;
+    float _patrollRadius;
     /// <summary>プレイヤー捕捉距離</summary>
-    [SerializeField] float _playerCaptureDistance;
+    float _playerCaptureDistance;
     /// <summary>攻撃範囲</summary>
-    [SerializeField] float _attackDistance;
+    float _attackDistance;
+    /// <summary>ダメージ量</summary>
+    float _dp;
     /// <summary>ぶつかったときにリパスするOBJのレイヤー</summary>
-    [SerializeField] int _repathLayer;
+    int _repathLayer;
     /// <summary>敵AIの移動モード</summary>
-    [SerializeField] MoveMode _moveMode;
+    MoveMode _moveMode;
     /// <summary>目標の座標への”ベクトル”</summary>
     Vector3 _targetPath = Vector3.zero;
     /// <summary>現状のプレイヤー捕捉フラグ</summary>
     bool _isPlayerFound = false;
     /// <summary>以前のプレイヤー捕捉フラグ</summary>
     bool _pisPlayerFound = false;
-    public bool _attacked = false;
-    //デリゲート
+    /// <summary>攻撃をしたかのフラグ</summary>
+    bool _attacked = false;
+    #endregion
+    #region デリゲート
     /// <summary>ダメージをくらった時に呼び出されるデリゲート</summary>
     public Action<Animator> damagedEvent;
     /// <summary>死んだときに呼び出されるデリゲート</summary>
@@ -44,6 +50,7 @@ public class EnemyAI_CORE : MonoBehaviour
     public Action<Animator> playerMissedEvent;
     /// <summary>プレイヤー攻撃時に呼び出されるデリゲート</summary>
     public Action<Animator> attackingEvent;
+    #endregion
     /// <summary>移動モード</summary>
     public enum MoveMode
     {
@@ -52,6 +59,9 @@ public class EnemyAI_CORE : MonoBehaviour
     }
     private void Start()
     {
+        //敵データの読み込み
+        GetDataAndSetFromContainer();
+        //コンポーネント取得
         _sr = GetComponent<SpriteRenderer>();
         _rb2d = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
@@ -171,7 +181,7 @@ public class EnemyAI_CORE : MonoBehaviour
         {
             //デリゲート呼び出し
             damagedEvent(_anim);
-            _hp -= 10f;
+            _hp -= _dp;
         }
     }
     private void OnDrawGizmos()
@@ -205,6 +215,18 @@ public class EnemyAI_CORE : MonoBehaviour
                     break;
                 }
         }
+    }
+    /// <summary>データコンテナからのデータで初期化</summary>
+    void GetDataAndSetFromContainer()
+    {
+        _hp = _eData._hp;
+        _ms = _eData._ms;
+        _patrollRadius = _eData._patrollRadius;
+        _playerCaptureDistance = _eData._playerCaptureDistance;
+        _attackDistance = _eData._attackDistance;
+        _dp = _eData._dp;
+        _repathLayer = _eData._repathLayer;
+        _moveMode = _eData._moveMode;
     }
     /// <summary>攻撃インターバルコルーチン。攻撃フラグをfalseにしてフラグを倒す</summary>
     /// <param name="s"></param>

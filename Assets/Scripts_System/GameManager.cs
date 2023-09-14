@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().material = _pSpawnMaterial;
     }
+    private void Update()
+    {
+        
+    }
     /// <summary>体力を更新するメソッド。引数に加算する値を代入</summary>
     /// <param name="health"></param>
     public void ModifyHealth(float health)
