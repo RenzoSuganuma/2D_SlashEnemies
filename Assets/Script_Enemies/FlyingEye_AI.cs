@@ -10,12 +10,12 @@ public class FlyingEye_AI : EnemyAI_CORE
     /// <summary>死亡時のドロップアイテム</summary>
     [SerializeField] GameObject _dropObj;
     /// <summary>プレイヤー捕捉時行動</summary>
-    void PlayerCapturedEvent()
+    void PlayerCapturedEvent(Animator anim)
     {
         this.gameObject.GetComponent<Renderer>().material = _playerCapturedMat;
     }
     /// <summary>プレイヤー喪失時行動</summary>
-    void PlayerMissedEvent()
+    void PlayerMissedEvent(Animator anim)
     {
         this.gameObject.GetComponent<Renderer>().material = _defaultMat;
     }
@@ -43,6 +43,12 @@ public class FlyingEye_AI : EnemyAI_CORE
                 break;
         }
     }
+    /// <summary>被攻撃行動</summary>
+    /// <param name="animator"></param>
+    void DamagedEvent(Animator animator)
+    {
+        Debug.Log($"{this.gameObject.name} IS1 Damaged");
+    }
     /// <summary>死亡行動メソッド</summary>
     void DeathEvent(Animator anim)
     {
@@ -59,6 +65,7 @@ public class FlyingEye_AI : EnemyAI_CORE
         base.playerMissedEvent += PlayerMissedEvent;
         base.attackingEvent += AttackingEvent;
         base.deathEvent += DeathEvent;
+        base.damagedEvent += DamagedEvent;
     }
     private void OnDisable()
     {
@@ -66,5 +73,6 @@ public class FlyingEye_AI : EnemyAI_CORE
         base.playerMissedEvent -= PlayerMissedEvent;
         base.attackingEvent -= AttackingEvent;
         base.deathEvent -= DeathEvent;
+        base.damagedEvent -= DamagedEvent;
     }
 }

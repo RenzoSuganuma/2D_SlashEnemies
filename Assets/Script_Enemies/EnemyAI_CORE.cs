@@ -35,13 +35,13 @@ public class EnemyAI_CORE : MonoBehaviour
     public bool _attacked = false;
     //デリゲート
     /// <summary>ダメージをくらった時に呼び出されるデリゲート</summary>
-    public Action damagedEvent = () => Debug.Log("DAMAGED");
+    public Action<Animator> damagedEvent;
     /// <summary>死んだときに呼び出されるデリゲート</summary>
     public Action<Animator> deathEvent;
     /// <summary>プレイヤー捕捉時に呼び出されるデリゲート</summary>
-    public Action playerCapturedEvent = () => Debug.Log("CAPTURED");
+    public Action<Animator> playerCapturedEvent;
     /// <summary>プレイヤーを見失った時に飛び出されるデリゲート</summary>
-    public Action playerMissedEvent = () => Debug.Log("MISSED");
+    public Action<Animator> playerMissedEvent;
     /// <summary>プレイヤー攻撃時に呼び出されるデリゲート</summary>
     public Action<Animator> attackingEvent;
     /// <summary>移動モード</summary>
@@ -116,7 +116,7 @@ public class EnemyAI_CORE : MonoBehaviour
             //デリゲート呼び出し
             if (_isPlayerFound && !_pisPlayerFound)
             {
-                playerCapturedEvent();
+                playerCapturedEvent(_anim);
                 _pisPlayerFound = true;
             }
             var this2player = GameObject.FindGameObjectWithTag("Player").transform.position - this.gameObject.transform.position;
@@ -141,7 +141,7 @@ public class EnemyAI_CORE : MonoBehaviour
             //デリゲート呼び出し
             if (!_isPlayerFound && _pisPlayerFound)
             {
-                playerMissedEvent();
+                playerMissedEvent(_anim);
                 _pisPlayerFound = false;
             }
         }
@@ -170,9 +170,16 @@ public class EnemyAI_CORE : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerWeapon"))
         {
             //デリゲート呼び出し
-            damagedEvent();
+            damagedEvent(_anim);
             _hp -= 10f;
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(this.gameObject.transform.position, _playerCaptureDistance);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.gameObject.transform.position, _attackDistance);
     }
     /// <summary>目標座標の更新[乱数でとる]</summary>
     private void RePath()
@@ -198,13 +205,6 @@ public class EnemyAI_CORE : MonoBehaviour
                     break;
                 }
         }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(this.gameObject.transform.position, _playerCaptureDistance);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.gameObject.transform.position, _attackDistance);
     }
     /// <summary>攻撃インターバルコルーチン。攻撃フラグをfalseにしてフラグを倒す</summary>
     /// <param name="s"></param>
