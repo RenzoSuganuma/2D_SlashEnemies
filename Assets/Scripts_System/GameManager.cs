@@ -11,18 +11,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] Material _pDefaultMaterial;
     [SerializeField] Material _pSpawnMaterial;
     [SerializeField] Text _elapsedTimeText;
-    [SerializeField] Text _playerNameText;
+    [SerializeField] Slider _hpSlider;
     float _elapsedTime = 0;
     private void Start()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().material = _pSpawnMaterial;
         _elapsedTime = 0;
-        _playerNameText.text = "P.Name : " + "Ethan.W";
     }
     private void Update()
     {
         _elapsedTime += Time.deltaTime;
         _elapsedTimeText.text = _elapsedTime.ToString("F3");
+        _hpSlider.value = _playerHealth / 100f;
     }
     /// <summary>体力を更新するメソッド。引数に加算する値を代入</summary>
     /// <param name="health"></param>

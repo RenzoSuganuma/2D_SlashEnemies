@@ -2822,7 +2822,7 @@ MonoBehaviour:
   _pDefaultMaterial: {fileID: 2100000, guid: 15403780b24c50440a99fb05e784a2c9, type: 2}
   _pSpawnMaterial: {fileID: 2100000, guid: fcc527ed886586c40a4ea285c7fc60f1, type: 2}
   _elapsedTimeText: {fileID: 572300935}
-  _playerNameText: {fileID: 0}
+  _hpSlider: {fileID: 2123894341}
 --- !u!4 &1722773318
 Transform:
   m_ObjectHideFlags: 0
