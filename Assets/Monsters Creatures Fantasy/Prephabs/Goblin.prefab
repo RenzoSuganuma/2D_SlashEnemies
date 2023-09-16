@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5524261138006580800}
   m_Layer: 2
   m_Name: Goblin
-  m_TagString: Damager
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,8 +185,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0025360882, y: -0.099561125}
-  m_Size: {x: 0.3456897, y: 0.5299074}
+  m_Offset: {x: -0.0025360882, y: -0.052749157}
+  m_Size: {x: 0.3456897, y: 0.43628347}
   m_Direction: 0
 --- !u!1 &8561049163675106725
 GameObject:

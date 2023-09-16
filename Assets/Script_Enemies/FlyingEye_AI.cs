@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public class FlyingEye_AI : EnemyAI_CORE
 {
@@ -45,9 +46,10 @@ public class FlyingEye_AI : EnemyAI_CORE
     }
     /// <summary>被攻撃行動</summary>
     /// <param name="animator"></param>
-    void DamagedEvent(Animator animator)
+    void DamagedEvent(Animator anim)
     {
         Debug.Log($"{this.gameObject.name} IS1 Damaged");
+        anim.SetTrigger("actTakeHit");
     }
     /// <summary>死亡行動メソッド</summary>
     void DeathEvent(Animator anim)
@@ -60,7 +62,8 @@ public class FlyingEye_AI : EnemyAI_CORE
         //ドロップアイテムの生成
         var go = GameObject.Instantiate(_dropObj);
         go.transform.position = this.transform.position;
-        Destroy(this.gameObject);
+        Destroy(this.GetComponent<FlyingEye_AI>());
+        Destroy(this.gameObject, 5f);
     }
     private void OnEnable()
     {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 297907965682748746}
   m_Layer: 2
   m_Name: Mushroom
-  m_TagString: Damager
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,8 +185,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0026947558, y: -0.04850492}
-  m_Size: {x: 0.3089357, y: 0.4544503}
+  m_Offset: {x: -0.0026947558, y: -0.027105168}
+  m_Size: {x: 0.3089357, y: 0.4116508}
   m_Direction: 0
 --- !u!1 &5387282498930173754
 GameObject:
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 6481549181661870608}
   m_Layer: 2
   m_Name: Damager
-  m_TagString: Untagged
+  m_TagString: Damager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

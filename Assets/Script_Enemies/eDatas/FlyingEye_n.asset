@@ -18,5 +18,6 @@ MonoBehaviour:
   _playerCaptureDistance: 4
   _attackDistance: 3
   _dp: 10
+  _rayLength: 5
   _repathLayer: 6
   _moveMode: 1

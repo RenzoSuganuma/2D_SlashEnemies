@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Damager
   - PlayerWeapon
+  - Monster
   layers:
   - Default
   - TransparentFX

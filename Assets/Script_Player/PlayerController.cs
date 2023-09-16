@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerInput))]
-public class PlayerPysicsController : MonoBehaviour, PlayerInputs.IPlayerActions
+public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
 {
     //各デフォルトコンポーネント
     /// <summary>物理挙動に必要</summary>
@@ -117,19 +117,6 @@ public class PlayerPysicsController : MonoBehaviour, PlayerInputs.IPlayerActions
             _mc.SetGroundedCondition(_isGrounded);
             this.gameObject.transform.parent = null;
         }
-        //ダメージ判定
-        if (collision.gameObject.CompareTag("Damager"))
-        {
-            //体力の更新
-            _gm.ModifyHealth(-10);
-            //ノックバック処理
-            var v = (collision.gameObject.transform.position - this.gameObject.transform.position).normalized;
-            Vector2 damageVec = new Vector2(v.x, 0);
-            this.gameObject.transform.position = -damageVec * 1f;
-            Debug.Log($"SIGN:{-damageVec}");
-            //アニメーション処理
-            _mc.ActionHurt();
-        }
         //壁張り付き処理
         if (collision.gameObject.CompareTag("Wall"))
         {
@@ -175,6 +162,20 @@ public class PlayerPysicsController : MonoBehaviour, PlayerInputs.IPlayerActions
         {
             _sr.flipX = false;
         }
+        //ダメージ判定
+        if (collision.gameObject.CompareTag("Damager"))
+        {
+            Debug.Log("ダメージ");
+            //体力の更新
+            _gm.ModifyHealth(-10);
+            //ノックバック処理
+            var v = (collision.gameObject.transform.position - this.gameObject.transform.position).normalized;
+            Vector2 damageVec = new Vector2(v.x, 0);
+            this.gameObject.transform.position = -damageVec * 1f;
+            Debug.Log($"SIGN:{-damageVec}");
+            //アニメーション処理
+            _mc.ActionHurt();
+        }
     }
     #region デバイス入力
     public void OnDash(InputAction.CallbackContext context)
@@ -182,15 +183,7 @@ public class PlayerPysicsController : MonoBehaviour, PlayerInputs.IPlayerActions
         if (context.action.name == "Dash")
         {
             Debug.Log("Dash");
-            //アニメーション再生
-            _mc.ActionDash();
-            //ダッシュ移動
-            Vector3 targetPos = Vector3.zero;
-            if (_sr.flipX)
-                targetPos = new Vector3(transform.position.x - _playerDashForce * Time.deltaTime, transform.position.y, transform.position.z);
-            else
-                targetPos = new Vector3(transform.position.x + _playerDashForce * Time.deltaTime, transform.position.y, transform.position.z);
-            transform.position = targetPos;
+            
         }
     }
     public void OnFire(InputAction.CallbackContext context)

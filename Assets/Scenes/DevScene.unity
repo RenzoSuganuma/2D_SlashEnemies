@@ -1071,10 +1071,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingEye
       objectReference: {fileID: 0}
-    - target: {fileID: 5387540324673731659, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.718607
@@ -2387,7 +2383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: 100
-  _playerStamina: 100
   _pDefaultMaterial: {fileID: 2100000, guid: 15403780b24c50440a99fb05e784a2c9, type: 2}
   _pSpawnMaterial: {fileID: 2100000, guid: fcc527ed886586c40a4ea285c7fc60f1, type: 2}
 --- !u!4 &1722773318
@@ -2805,11 +2800,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3124596676478492185, guid: e0e7bed37fb5e8240a7daef284508b09, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.161001
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: 3124596676478492185, guid: e0e7bed37fb5e8240a7daef284508b09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12490666
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3124596676478492185, guid: e0e7bed37fb5e8240a7daef284508b09, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2863,10 +2858,6 @@ PrefabInstance:
     - target: {fileID: 7473427183246469695, guid: 62069f5b78a1b7b45bef0b1438630c1a, type: 3}
       propertyPath: m_Name
       value: Goblin
-      objectReference: {fileID: 0}
-    - target: {fileID: 7473427183246469695, guid: 62069f5b78a1b7b45bef0b1438630c1a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8151393291016564690, guid: 62069f5b78a1b7b45bef0b1438630c1a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2964,10 +2955,6 @@ PrefabInstance:
     - target: {fileID: 3165947753314321954, guid: 9c8093edbd0312442b42ec6493d9deda, type: 3}
       propertyPath: m_Name
       value: Mushroom
-      objectReference: {fileID: 0}
-    - target: {fileID: 3165947753314321954, guid: 9c8093edbd0312442b42ec6493d9deda, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

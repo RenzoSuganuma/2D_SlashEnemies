@@ -17,6 +17,8 @@ public class EnemyDataContainer : ScriptableObject
     public float _attackDistance;
     /// <summary>ダメージ量</summary>
     public float _dp;
+    /// <summary>飛ばす光線の長さ</summary>
+    public int _rayLength;
     /// <summary>ぶつかったときにリパスするOBJのレイヤー</summary>
     public int _repathLayer;
     /// <summary>敵AIの移動モード</summary>

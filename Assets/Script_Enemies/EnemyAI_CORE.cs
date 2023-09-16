@@ -26,6 +26,8 @@ public class EnemyAI_CORE : MonoBehaviour
     float _attackDistance;
     /// <summary>ダメージ量</summary>
     float _dp;
+    /// <summary>光線の長さ</summary>
+    int _rayLength;
     /// <summary>ぶつかったときにリパスするOBJのレイヤー</summary>
     int _repathLayer;
     /// <summary>敵AIの移動モード</summary>
@@ -98,8 +100,8 @@ public class EnemyAI_CORE : MonoBehaviour
         {
             Debug.Log($"目標座標{_targetPath}");
             //光線のキャスト
-            Ray2D ray = new Ray2D(this.gameObject.transform.position, _targetPath.normalized);
-            RaycastHit2D hit2d = Physics2D.Raycast(ray.origin, ray.direction, 1);
+            Ray2D ray = new Ray2D(this.gameObject.transform.position, _targetPath.normalized * _rayLength);
+            RaycastHit2D hit2d = Physics2D.Raycast(ray.origin, ray.direction, 1 * _rayLength);
             Debug.DrawRay(ray.origin, ray.direction, Color.green);
             if (hit2d.collider)
             {
@@ -225,6 +227,7 @@ public class EnemyAI_CORE : MonoBehaviour
         _playerCaptureDistance = _eData._playerCaptureDistance;
         _attackDistance = _eData._attackDistance;
         _dp = _eData._dp;
+        _rayLength = _eData._rayLength;
         _repathLayer = _eData._repathLayer;
         _moveMode = _eData._moveMode;
     }

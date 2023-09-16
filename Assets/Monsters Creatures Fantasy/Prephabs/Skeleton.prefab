@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6683202137478021792}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: Damager
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,8 +235,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06643617, y: -0.017483234}
-  m_Size: {x: 0.49996066, y: 0.68178606}
+  m_Offset: {x: 0.06643617, y: 0.022025883}
+  m_Size: {x: 0.49996066, y: 0.6027678}
   m_Direction: 0
 --- !u!50 &6683202137478021792
 Rigidbody2D:
