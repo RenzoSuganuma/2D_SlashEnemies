@@ -53,10 +53,13 @@ public class FlyingEye_AI : EnemyAI_CORE
     void DeathEvent(Animator anim)
     {
         anim.Play("FlyingEye_Death");
+    }
+    /// <summary>アニメーションイベントから呼び出す</summary>
+    void DestroySelf()
+    {
         //ドロップアイテムの生成
         var go = GameObject.Instantiate(_dropObj);
         go.transform.position = this.transform.position;
-        //破棄
         Destroy(this.gameObject);
     }
     private void OnEnable()

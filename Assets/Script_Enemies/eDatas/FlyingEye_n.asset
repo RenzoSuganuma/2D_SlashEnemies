@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 442586c5e4e50414d943a10b5b4106e4, type: 3}
-  m_Name: Goblin
+  m_Name: FlyingEye_n
   m_EditorClassIdentifier: 
   _hp: 10
-  _ms: 5
-  _patrollRadius: 4
-  _playerCaptureDistance: 3
-  _attackDistance: 2
+  _ms: 10
+  _patrollRadius: 5
+  _playerCaptureDistance: 4
+  _attackDistance: 3
   _dp: 10
   _repathLayer: 6
-  _moveMode: 0
+  _moveMode: 1

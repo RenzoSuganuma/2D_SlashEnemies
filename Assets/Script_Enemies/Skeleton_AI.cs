@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Goblin_AI : EnemyAI_CORE
+public class Skeleton_AI : EnemyAI_CORE
 {
     /// <summary>プレイヤー捕捉時のマテリアル</summary>
     [SerializeField] Material _playerCapturedMat;
@@ -52,7 +52,7 @@ public class Goblin_AI : EnemyAI_CORE
     /// <summary>死亡行動メソッド</summary>
     void DeathEvent(Animator anim)
     {
-        anim.Play("Goblin_Death");
+        anim.Play("Mushroom_Death");
     }
     /// <summary>アニメーションイベントから呼び出す</summary>
     void DestroySelf()
