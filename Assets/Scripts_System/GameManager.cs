@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     float _elapsedTime = 0;
     private void Start()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().material = _pSpawnMaterial;
+        StartCoroutine(GodMode(3));
         _elapsedTime = 0;
     }
     private void Update()
@@ -29,5 +29,11 @@ public class GameManager : MonoBehaviour
     public void ModifyHealth(float health)
     {
         _playerHealth += health;
+    }
+    IEnumerator GodMode(float sec)
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().material = _pSpawnMaterial;
+        yield return new WaitForSeconds(sec);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().material = _pDefaultMaterial;
     }
 }
