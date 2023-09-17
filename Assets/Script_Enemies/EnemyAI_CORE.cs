@@ -30,6 +30,8 @@ public class EnemyAI_CORE : MonoBehaviour
     int _rayLength;
     /// <summary>ぶつかったときにリパスするOBJのレイヤー</summary>
     int _repathLayer;
+    /// <summary>キルした時のスコア</summary>
+    int _killScore;
     /// <summary>敵AIの移動モード</summary>
     MoveMode _moveMode;
     /// <summary>目標の座標への”ベクトル”</summary>
@@ -168,6 +170,12 @@ public class EnemyAI_CORE : MonoBehaviour
         }
         #endregion
     }
+
+    public void AddPlayerScore()
+    {
+        //ゲームマネージャーへスコア申請
+        GameObject.FindAnyObjectByType<GameManager>().AddScore(_killScore);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //↓歩行移動モード選択時には光線が当たった時のリパスで十分。これは飛行移動モード時壁に当たった時のリパス処理
@@ -229,6 +237,7 @@ public class EnemyAI_CORE : MonoBehaviour
         _dp = _eData._dp;
         _rayLength = _eData._rayLength;
         _repathLayer = _eData._repathLayer;
+        _killScore = _eData._killScore;
         _moveMode = _eData._moveMode;
     }
     /// <summary>攻撃インターバルコルーチン。攻撃フラグをfalseにしてフラグを倒す</summary>

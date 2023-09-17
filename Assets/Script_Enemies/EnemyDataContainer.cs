@@ -21,6 +21,8 @@ public class EnemyDataContainer : ScriptableObject
     public int _rayLength;
     /// <summary>ぶつかったときにリパスするOBJのレイヤー</summary>
     public int _repathLayer;
+    /// <summary>キルした時のスコア</summary>
+    public int _killScore;
     /// <summary>敵AIの移動モード</summary>
     public MoveMode _moveMode;
 }

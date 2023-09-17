@@ -20,4 +20,5 @@ MonoBehaviour:
   _dp: 10
   _rayLength: 5
   _repathLayer: 6
+  _killScore: 10
   _moveMode: 1
