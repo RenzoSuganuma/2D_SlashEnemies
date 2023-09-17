@@ -21,8 +21,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text _playerScoreText;
     /// <summary>デスカウントのテキスト</summary>
     [SerializeField] Text _playerDeathCountText;
+    /// <summary>一時停止のテキスト</summary>
+    [SerializeField] Text _pausedText;
     /// <summary>プレイヤー体力スライダー</summary>
     [SerializeField] Slider _hpSlider;
+    /// <summary>一時停止オブジェクト</summary>
     [SerializeField] GameObject _pausedUI;
     /// <summary>ゲーム経過時間保持変数</summary>
     float _elapsedTime = 0;
@@ -31,7 +34,7 @@ public class GameManager : MonoBehaviour
     /// <summary>死亡カウント</summary>
     int _pDeathCount = 0;
     /// <summary>ゲームが一時停止しているかのフラグ</summary>
-    public bool _isPaused = false;
+    bool _isPaused = false;
     private void Start()
     {
         //スポーン直後のコルーチン
