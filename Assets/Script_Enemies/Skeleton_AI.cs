@@ -63,6 +63,7 @@ public class Skeleton_AI : EnemyAI_CORE
         go.transform.position = this.transform.position;
         Destroy(this.GetComponent<Skeleton_AI>());
         Destroy(this.gameObject, 5f);
+        base.AddPlayerScore();
     }
     private void OnEnable()
     {

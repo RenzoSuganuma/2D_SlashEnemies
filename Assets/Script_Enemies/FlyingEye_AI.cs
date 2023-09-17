@@ -64,6 +64,7 @@ public class FlyingEye_AI : EnemyAI_CORE
         go.transform.position = this.transform.position;
         Destroy(this.GetComponent<FlyingEye_AI>());
         Destroy(this.gameObject, 5f);
+        base.AddPlayerScore();
     }
     private void OnEnable()
     {
