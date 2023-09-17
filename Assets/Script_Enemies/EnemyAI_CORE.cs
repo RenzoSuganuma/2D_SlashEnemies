@@ -87,6 +87,9 @@ public class EnemyAI_CORE : MonoBehaviour
         {
             //デリゲート呼び出し
             deathEvent(_anim);
+            //すり抜けるようにする
+            this.GetComponent<Rigidbody2D>().simulated = false;
+            this.GetComponent<Collider2D>().isTrigger = true;
         }
         //パトロール→発見→追跡→攻撃
         //パトロール↓
@@ -170,7 +173,7 @@ public class EnemyAI_CORE : MonoBehaviour
         }
         #endregion
     }
-
+    /// <summary>死亡時に派生クラスから呼び出される</summary>
     public void AddPlayerScore()
     {
         //ゲームマネージャーへスコア申請
