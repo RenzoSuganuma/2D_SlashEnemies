@@ -23,12 +23,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text _playerDeathCountText;
     /// <summary>プレイヤー体力スライダー</summary>
     [SerializeField] Slider _hpSlider;
+    [SerializeField] GameObject _pausedUI;
     /// <summary>ゲーム経過時間保持変数</summary>
     float _elapsedTime = 0;
     /// <summary>プレイヤースコア</summary>
     float _playerScore;
     /// <summary>死亡カウント</summary>
     int _pDeathCount = 0;
+    /// <summary>ゲームが一時停止しているかのフラグ</summary>
+    public bool _isPaused = false;
     private void Start()
     {
         //スポーン直後のコルーチン
@@ -80,9 +83,25 @@ public class GameManager : MonoBehaviour
     {
         _playerHealth += health;
     }
+    /// <summary>プレイヤーのスコアを加算</summary>
+    /// <param name="score"></param>
     public void AddScore(float score)
     {
         _playerScore += score;
+    }
+    /// <summary>ゲームの一時停止</summary>
+    public void Pause()
+    {
+        _isPaused = true;
+        Time.timeScale = 0;
+        _pausedUI.SetActive(true);
+    }
+    /// <summary>ゲームの再開</summary>
+    public void Resume()
+    {
+        _isPaused = false;
+        Time.timeScale = 1;
+        _pausedUI.SetActive(false);
     }
     /// <summary>スポーンしたばかりの状態のシェーダーに切り替え</summary>
     /// <param name="sec"></param>

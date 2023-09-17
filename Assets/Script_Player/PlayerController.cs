@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
         _input.onActionTriggered += OnJump;
         _input.onActionTriggered += OnLook;
         _input.onActionTriggered += OnMove;
+        _input.onActionTriggered += OnPause;
     }
     private void OnDisable()
     {
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
         _input.onActionTriggered -= OnJump;
         _input.onActionTriggered -= OnLook;
         _input.onActionTriggered -= OnMove;
+        _input.onActionTriggered -= OnPause;
     }
     private void FixedUpdate()
     {
@@ -183,7 +185,6 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
         if (context.action.name == "Dash")
         {
             Debug.Log("Dash");
-            
         }
     }
     public void OnFire(InputAction.CallbackContext context)
@@ -228,6 +229,17 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
             else if (context.ReadValue<Vector2>().x != 0 && !_isGrabbingWall) _sr.flipX = true;
             //“ü—Í’l‚Ì‘ã“ü
             _iMove = new Vector2(context.ReadValue<Vector2>().x, 0);
+        }
+    }
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.action.name == "Pause")
+        {
+            if (context.ReadValueAsButton())
+            {
+                Debug.Log("ˆêŽž’âŽ~");
+                GameObject.FindAnyObjectByType<GameManager>().Pause();
+            }
         }
     }
     #endregion
