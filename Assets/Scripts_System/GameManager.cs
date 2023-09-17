@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //スポーン直後のコルーチン
-        StartCoroutine(GodMode(3));
+        //StartCoroutine(GodMode(3));
         //経過時間の変数値の初期化
         _elapsedTime = 0;
         //スコア値の初期化
