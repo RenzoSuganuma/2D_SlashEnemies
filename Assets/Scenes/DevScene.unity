@@ -2345,6 +2345,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e91d418e2973cb49a5f93f106abdb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1742638751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6409624486366820553, guid: bfc12ece3dc030242aa891efe8236783, type: 3}
+  m_PrefabInstance: {fileID: 671303505701580381}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1786509015
 GameObject:
   m_ObjectHideFlags: 0
@@ -3196,6 +3201,10 @@ PrefabInstance:
       propertyPath: _pausedUI
       value: 
       objectReference: {fileID: 2116773738}
+    - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
+      propertyPath: _playerObj
+      value: 
+      objectReference: {fileID: 1742638751}
     - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
       propertyPath: _pausedText
       value: 

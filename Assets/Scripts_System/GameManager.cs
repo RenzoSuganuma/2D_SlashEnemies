@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Slider _hpSlider;
     /// <summary>一時停止オブジェクト</summary>
     [SerializeField] GameObject _pausedUI;
+    /// <summary>プレイヤーオブジェクト</summary>
+    [SerializeField] GameObject _playerObj;
     /// <summary>ゲーム経過時間保持変数</summary>
     float _elapsedTime = 0;
     /// <summary>プレイヤースコア</summary>
@@ -45,6 +47,8 @@ public class GameManager : MonoBehaviour
         _playerScore = 0;
         //デスカウント値の初期化
         _pDeathCount = 0;
+        //プレイヤー取得
+        _playerObj = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {
@@ -65,18 +69,16 @@ public class GameManager : MonoBehaviour
     /// <summary>プレイヤーのリスポーン処理</summary>
     private void Respawn()
     {
-        //プレイヤーの検索
-        var p = GameObject.FindGameObjectWithTag("Player");
         //無効化
-        p.SetActive(false);
+        _playerObj.SetActive(false);
         //リスポーン座標の代入
-        p.transform.position = _pSpawnTransform.position;
+        _playerObj.transform.position = _pSpawnTransform.position;
         //プレイヤーの体力を初期化
         _playerHealth = 100;
         //経過時間にペナルティ分を加算
         _elapsedTime += 2.0f;
         //有効化
-        p.SetActive(true);
+        _playerObj.SetActive(true);
         //デスカウントを加算
         _pDeathCount++;
     }
@@ -112,10 +114,11 @@ public class GameManager : MonoBehaviour
     IEnumerator GodMode(float sec)
     {
         //スポーン直後のマテリアルに変える
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().material = _pSpawnMaterial;
+        _playerObj.GetComponent<SpriteRenderer>().material = _pSpawnMaterial;
         //時間経過後
         yield return new WaitForSeconds(sec);
         //通常のマテリアルに変更
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().material = _pDefaultMaterial;
+        _playerObj.GetComponent<SpriteRenderer>().material = _pDefaultMaterial;
+        Debug.Log("コルーチン終わり");
     }
 }
