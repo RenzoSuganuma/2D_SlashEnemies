@@ -172,7 +172,7 @@ public class EnemyAI_CORE : MonoBehaviour
             //デリゲート呼び出し
             attackingEvent(_anim);
             _attacked = true;
-            StartCoroutine(WaitForEndOfAttack(1));
+            StartCoroutine(WaitForEndOfAttack(3));
         }
         #endregion
     }

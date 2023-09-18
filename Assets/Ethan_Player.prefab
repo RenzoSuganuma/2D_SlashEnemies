@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75f56b17c3d2ba428838ae16ccf08a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMoveSpeed: 130
+  _playerMoveSpeed: 150
   _playerJumpForce: 50
   _playerDashForce: 100
   _pDefaultMat: {fileID: 2100000, guid: 15403780b24c50440a99fb05e784a2c9, type: 2}

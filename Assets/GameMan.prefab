@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5505835696639674485}
   m_Layer: 0
   m_Name: GameMan
-  m_TagString: Player
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7647825903165668182}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.77, y: -0.19, z: -0.059318066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: 10
-  _pDefaultMaterial: {fileID: 2100000, guid: 15403780b24c50440a99fb05e784a2c9, type: 2}
-  _pSpawnMaterial: {fileID: 2100000, guid: fcc527ed886586c40a4ea285c7fc60f1, type: 2}
   _pSpawnTransform: {fileID: 0}
   _elapsedTimeText: {fileID: 0}
   _playerScoreText: {fileID: 0}
   _playerDeathCountText: {fileID: 0}
+  _pausedText: {fileID: 0}
   _hpSlider: {fileID: 0}
+  _pausedUI: {fileID: 0}
+  _playerObj: {fileID: 0}
