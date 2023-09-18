@@ -718,7 +718,7 @@ Transform:
   m_GameObject: {fileID: 506649795}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.79, y: 23.32, z: -10.1866}
+  m_LocalPosition: {x: 2.15, y: 11.07, z: -10.1866}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -966,63 +966,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1001 &787054293
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5387540324673731659, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_Name
-      value: FlyingEye
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 48.74046
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.4159627
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717319093928095684, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 21b40ff77065c514fa9b6d839b484fdf, type: 3}
 --- !u!1 &795219916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,6 +1560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1275273604}
   - component: {fileID: 1275273603}
+  - component: {fileID: 1275273605}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -1679,6 +1623,102 @@ Transform:
   - {fileID: 1824856515}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1275273605
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275273602}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e4ea356ba327c7b4488d1682612e9375, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.505
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1276600841
 GameObject:
   m_ObjectHideFlags: 0
@@ -13695,16 +13735,6 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 38
       m_TileSpriteIndex: 38
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 0, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 37
-      m_TileSpriteIndex: 37
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -40596,7 +40626,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: a79452ef5f7cd4348bc7b5aacad8d99b, type: 2}
   - m_RefCount: 103
     m_Data: {fileID: 11400000, guid: 944df6ef87503494b825d8291ff8c7c4, type: 2}
-  - m_RefCount: 996
+  - m_RefCount: 995
     m_Data: {fileID: 11400000, guid: a37bb680b2854ab4bb11e69d13e9f263, type: 2}
   - m_RefCount: 634
     m_Data: {fileID: 11400000, guid: a14f326ce2165b54a84a488685f6702e, type: 2}
@@ -40677,14 +40707,14 @@ Tilemap:
     m_Data: {fileID: -1888452236414113097, guid: a419b29d7ee1f4b45acf54016a814fbb, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 3462496792379852327, guid: a419b29d7ee1f4b45acf54016a814fbb, type: 3}
-  - m_RefCount: 996
+  - m_RefCount: 995
     m_Data: {fileID: 1738814861554786515, guid: a419b29d7ee1f4b45acf54016a814fbb, type: 3}
   - m_RefCount: 634
     m_Data: {fileID: -6668321401045446036, guid: a419b29d7ee1f4b45acf54016a814fbb, type: 3}
   - m_RefCount: 813
     m_Data: {fileID: -6360358668549035829, guid: a419b29d7ee1f4b45acf54016a814fbb, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 3875
+  - m_RefCount: 3874
     m_Data:
       e00: 1
       e01: 0
@@ -40703,7 +40733,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 3875
+  - m_RefCount: 3874
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -41386,7 +41416,7 @@ MonoBehaviour:
   - {fileID: 3165947753314321954, guid: 9c8093edbd0312442b42ec6493d9deda, type: 3}
   - {fileID: 8353786326283912560, guid: e0e7bed37fb5e8240a7daef284508b09, type: 3}
   _interval: 3
-  _limit: 5
+  _limit: 10
 --- !u!1 &1824856514
 GameObject:
   m_ObjectHideFlags: 3
@@ -42019,6 +42049,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1447935620}
     - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
+      propertyPath: _playerHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
       propertyPath: _elapsedTimeText
       value: 
       objectReference: {fileID: 572300935}
@@ -42101,4 +42135,3 @@ SceneRoots:
   - {fileID: 506649796}
   - {fileID: 448758826}
   - {fileID: 1821624859}
-  - {fileID: 787054293}

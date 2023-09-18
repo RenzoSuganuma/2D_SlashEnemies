@@ -65,6 +65,7 @@ public class FlyingEye_AI : EnemyAI_CORE
         Destroy(this.GetComponent<FlyingEye_AI>());
         Destroy(this.gameObject, 5f);
         base.AddPlayerScore();
+        base.PlayDeathVoice();
     }
     private void OnEnable()
     {

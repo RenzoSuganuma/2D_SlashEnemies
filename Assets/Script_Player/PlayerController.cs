@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
             //ノックバック処理
             var v = (collision.gameObject.transform.position - this.gameObject.transform.position).normalized;
             Vector2 damageVec = new Vector2(v.x, 0);
-            this.gameObject.transform.position = -damageVec * 1f;
+            _rb2d.AddForce(-damageVec, ForceMode2D.Impulse);
             Debug.Log($"SIGN:{-damageVec}");
             //アニメーション処理
             _mc.ActionHurt();

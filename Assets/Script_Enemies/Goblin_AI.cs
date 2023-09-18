@@ -64,6 +64,7 @@ public class Goblin_AI : EnemyAI_CORE
         Destroy(this.GetComponent<Goblin_AI>());
         Destroy(this.gameObject, 5f);
         base.AddPlayerScore();
+        base.PlayDeathVoice();
     }
     private void OnEnable()
     {

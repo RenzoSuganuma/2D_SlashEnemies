@@ -55,8 +55,7 @@ public class GameManager : MonoBehaviour
         //死亡カウントの更新
         _playerDeathCountText.text = _pDeathCount.ToString();
         //体力が０の時
-        if (_playerHealth <= 0)
-            Respawn();
+        if (_playerHealth <= 0) { Respawn(); }
     }
     /// <summary>プレイヤーのリスポーン処理</summary>
     private void Respawn()

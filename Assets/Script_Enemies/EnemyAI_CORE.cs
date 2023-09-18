@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
+
 [RequireComponent (typeof(Animator))]
 [RequireComponent (typeof(Rigidbody2D))]
 /// <summary> 敵キャラのAIのコア </summary>
@@ -10,9 +12,11 @@ public class EnemyAI_CORE : MonoBehaviour
     Animator _anim;
     Rigidbody2D _rb2d;
     SpriteRenderer _sr;
+    AudioSource _as;
     #region AIフィールド
     /// <summary>敵データ</summary>
     [SerializeField] EnemyDataContainer _eData;
+    [SerializeField] Slider _hpBar;
     /// <summary>プレイヤーオブジェクト</summary>
     GameObject _player;
     /// <summary>体力</summary>
@@ -35,6 +39,10 @@ public class EnemyAI_CORE : MonoBehaviour
     int _killScore;
     /// <summary>敵AIの移動モード</summary>
     MoveMode _moveMode;
+    /// <summary>攻撃時の声</summary>
+    AudioClip _attackV;
+    /// <summary>死亡時の声</summary>
+    AudioClip _deathV;
     /// <summary>目標の座標への”ベクトル”</summary>
     Vector3 _targetPath = Vector3.zero;
     /// <summary>現状のプレイヤー捕捉フラグ</summary>
@@ -66,10 +74,13 @@ public class EnemyAI_CORE : MonoBehaviour
     {
         //敵データの読み込み
         GetDataAndSetFromContainer();
+        //体力ゲージの最大値設定
+        _hpBar.maxValue = _hp;
         //コンポーネント取得
         _sr = GetComponent<SpriteRenderer>();
         _rb2d = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
+        _as = GetComponent<AudioSource>();
         //移動モードによって重力スケールが変動
         _rb2d.gravityScale = (_moveMode == MoveMode.Fly) ? 0 : 1;
         _rb2d.freezeRotation = true;
@@ -83,6 +94,8 @@ public class EnemyAI_CORE : MonoBehaviour
     private void FixedUpdate()
     {
         Debug.Log($"目標補足フラグ{_pisPlayerFound}");
+        //体力表示更新
+        _hpBar.value = (_hp / _hpBar.maxValue) * _hpBar.maxValue;
         //フリップ処理
         _sr.flipX = _targetPath.x < 0;
         //死亡判定
@@ -171,10 +184,19 @@ public class EnemyAI_CORE : MonoBehaviour
         {
             //デリゲート呼び出し
             attackingEvent(_anim);
+            //効果音
+            _as.PlayOneShot(_attackV);
+            //フラグを立てる
             _attacked = true;
             StartCoroutine(WaitForEndOfAttack(3));
         }
         #endregion
+    }
+    /// <summary>死亡時の効果音再生</summary>
+    public void PlayDeathVoice()
+    {
+        //効果音再生
+        _as.PlayOneShot(_deathV);
     }
     /// <summary>死亡時に派生クラスから呼び出される</summary>
     public void AddPlayerScore()
@@ -249,6 +271,8 @@ public class EnemyAI_CORE : MonoBehaviour
         _repathLayer = _eData._repathLayer;
         _killScore = _eData._killScore;
         _moveMode = _eData._moveMode;
+        _attackV = _eData._attackV;
+        _deathV = _eData._deathV;
     }
     /// <summary>攻撃インターバルコルーチン。攻撃フラグをfalseにしてフラグを倒す</summary>
     /// <param name="s"></param>

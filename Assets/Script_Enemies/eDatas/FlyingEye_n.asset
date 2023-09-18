@@ -22,3 +22,5 @@ MonoBehaviour:
   _repathLayer: 6
   _killScore: 10
   _moveMode: 1
+  _attackV: {fileID: 8300000, guid: 1c855a2d764ba2e47830a2a9cca9abf8, type: 3}
+  _deathV: {fileID: 8300000, guid: 55de510bf6d762147b1c426855786391, type: 3}

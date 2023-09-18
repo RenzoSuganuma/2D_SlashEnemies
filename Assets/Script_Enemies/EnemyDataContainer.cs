@@ -25,4 +25,8 @@ public class EnemyDataContainer : ScriptableObject
     public int _killScore;
     /// <summary>“GAI‚ÌˆÚ“®ƒ‚[ƒh</summary>
     public MoveMode _moveMode;
+    /// <summary>UŒ‚‚Ìº</summary>
+    public AudioClip _attackV;
+    /// <summary>€–S‚Ìº</summary>
+    public AudioClip _deathV;
 }
