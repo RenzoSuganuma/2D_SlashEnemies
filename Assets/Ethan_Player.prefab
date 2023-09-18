@@ -240,6 +240,8 @@ MonoBehaviour:
   _playerMoveSpeed: 130
   _playerJumpForce: 50
   _playerDashForce: 100
+  _pDefaultMat: {fileID: 2100000, guid: 15403780b24c50440a99fb05e784a2c9, type: 2}
+  _pGodMat: {fileID: 2100000, guid: fcc527ed886586c40a4ea285c7fc60f1, type: 2}
 --- !u!1 &7500371940721891501
 GameObject:
   m_ObjectHideFlags: 0

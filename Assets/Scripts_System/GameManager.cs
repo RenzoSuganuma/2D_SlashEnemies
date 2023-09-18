@@ -9,10 +9,6 @@ public class GameManager : MonoBehaviour
 {
     /// <summary>プレイヤー体力</summary>
     [SerializeField] float _playerHealth;
-    /// <summary>デフォルトのプレイヤーのマテリアル</summary>
-    [SerializeField] Material _pDefaultMaterial;
-    /// <summary>プレイヤースポーン時のマテリアル</summary>
-    [SerializeField] Material _pSpawnMaterial;
     /// <summary>プレイヤー再スポーン時の座標</summary>
     [SerializeField] Transform _pSpawnTransform;
     /// <summary>ゲーム経過時間</summary>
@@ -39,16 +35,12 @@ public class GameManager : MonoBehaviour
     bool _isPaused = false;
     private void Start()
     {
-        //スポーン直後のコルーチン
-        //StartCoroutine(GodMode(3));
         //経過時間の変数値の初期化
         _elapsedTime = 0;
         //スコア値の初期化
         _playerScore = 0;
         //デスカウント値の初期化
         _pDeathCount = 0;
-        //プレイヤー取得
-        _playerObj = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {
@@ -107,18 +99,5 @@ public class GameManager : MonoBehaviour
         _isPaused = false;
         Time.timeScale = 1;
         _pausedUI.SetActive(false);
-    }
-    /// <summary>スポーンしたばかりの状態のシェーダーに切り替え</summary>
-    /// <param name="sec"></param>
-    /// <returns></returns>
-    IEnumerator GodMode(float sec)
-    {
-        //スポーン直後のマテリアルに変える
-        _playerObj.GetComponent<SpriteRenderer>().material = _pSpawnMaterial;
-        //時間経過後
-        yield return new WaitForSeconds(sec);
-        //通常のマテリアルに変更
-        _playerObj.GetComponent<SpriteRenderer>().material = _pDefaultMaterial;
-        Debug.Log("コルーチン終わり");
     }
 }

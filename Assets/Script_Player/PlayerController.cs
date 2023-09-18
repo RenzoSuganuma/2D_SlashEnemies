@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 /// <summary>
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
     bool _isGrounded = false;
     /// <summary>壁張り付きフラグ</summary>
     bool _isGrabbingWall = false;
+    /// <summary>無敵モードのフラグ</summary>
+    bool _isGodMode = false;
     /// <summary>プレイヤーにかかっているヴェロシティ</summary>
     Vector2 _pVel = Vector2.zero;
     /// <summary>移動速度値</summary>
@@ -41,6 +44,10 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
     [SerializeField] float _playerJumpForce;
     /// <summary>ジャンプ力値</summary>
     [SerializeField] float _playerDashForce;
+    /// <summary>デフォルトのマテリアル</summary>
+    [SerializeField] Material _pDefaultMat;
+    /// <summary>無敵モードのマテリアル</summary>
+    [SerializeField] Material _pGodMat;
     private void Awake()
     {
         //デバイス入力プロバイダーを取得
@@ -58,6 +65,8 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
         _gm = FindAnyObjectByType<GameManager>();
         //アニメーション操作クラスの実体化
         _mc = new PlayerMotionController(_anim);
+        //無敵モード起動
+        StartCoroutine(Godmode(3));
     }
     private void OnEnable()
     {
@@ -108,6 +117,17 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
             _anim.SetBool("isGrabingWall", false);
             _isGrabbingWall = false;
         }
+    }
+    /// <summary>無敵モード</summary>
+    /// <param name="t"></param>
+    /// <returns></returns>
+    IEnumerator Godmode(float t)
+    {
+        _isGodMode = true;
+        _sr.material = _pGodMat;
+        yield return new WaitForSeconds(t);
+        _isGodMode = false;
+        _sr.material = _pDefaultMat;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -164,8 +184,8 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
         {
             _sr.flipX = false;
         }
-        //ダメージ判定
-        if (collision.gameObject.CompareTag("Damager"))
+        //ダメージ判定 [無敵モードじゃないとき]
+        if (collision.gameObject.CompareTag("Damager") && !_isGodMode)
         {
             Debug.Log("ダメージ");
             //体力の更新
