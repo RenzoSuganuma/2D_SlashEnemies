@@ -10,10 +10,11 @@ public class EnemyAI_CORE : MonoBehaviour
     Animator _anim;
     Rigidbody2D _rb2d;
     SpriteRenderer _sr;
-    #region 公開フィールド
-    //AIフィールド
+    #region AIフィールド
     /// <summary>敵データ</summary>
     [SerializeField] EnemyDataContainer _eData;
+    /// <summary>プレイヤーオブジェクト</summary>
+    GameObject _player;
     /// <summary>体力</summary>
     float _hp;
     /// <summary>移動速度</summary>
@@ -76,6 +77,8 @@ public class EnemyAI_CORE : MonoBehaviour
         RePath();
         //RayCastの影響を受けないようにする
         this.gameObject.layer = 2;
+        //プレイヤーの検索
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
     private void FixedUpdate()
     {
@@ -127,7 +130,7 @@ public class EnemyAI_CORE : MonoBehaviour
         #region プレイヤー発見処理
         //プレイヤー発見処理
         if (Vector2.Distance(this.gameObject.transform.position,
-            GameObject.FindGameObjectWithTag("Player").transform.position) < _playerCaptureDistance)
+            _player.transform.position) < _playerCaptureDistance)
         {
             _isPlayerFound = true;
             //デリゲート呼び出し
@@ -136,7 +139,7 @@ public class EnemyAI_CORE : MonoBehaviour
                 playerCapturedEvent(_anim);
                 _pisPlayerFound = true;
             }
-            var this2player = GameObject.FindGameObjectWithTag("Player").transform.position - this.gameObject.transform.position;
+            var this2player = _player.transform.position - this.gameObject.transform.position;
             //移動モードによってベクトルを変更
             switch (_moveMode)
             {
@@ -164,12 +167,12 @@ public class EnemyAI_CORE : MonoBehaviour
         }
         //攻撃処理
         if (_isPlayerFound && Vector2.Distance(this.gameObject.transform.position,
-            GameObject.FindGameObjectWithTag("Player").transform.position) < _attackDistance && !_attacked)
+            _player.transform.position) < _attackDistance && !_attacked)
         {
             //デリゲート呼び出し
             attackingEvent(_anim);
             _attacked = true;
-            StartCoroutine(WaitForEndOfAttack(3));
+            StartCoroutine(WaitForEndOfAttack(1));
         }
         #endregion
     }
@@ -183,6 +186,10 @@ public class EnemyAI_CORE : MonoBehaviour
     {
         //↓歩行移動モード選択時には光線が当たった時のリパスで十分。これは飛行移動モード時壁に当たった時のリパス処理
         if (collision.gameObject.layer == _repathLayer && !_isPlayerFound && _moveMode == MoveMode.Fly)
+        {
+            RePath();
+        }
+        if (collision.gameObject.CompareTag("Monster"))
         {
             RePath();
         }
