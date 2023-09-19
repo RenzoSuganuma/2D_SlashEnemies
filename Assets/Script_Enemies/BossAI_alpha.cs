@@ -31,6 +31,7 @@ public class BossAI_alpha : MonoBehaviour
     [SerializeField] GameObject _spellObj;
     /// <summary>死亡時オブジェクト</summary>
     [SerializeField] GameObject _deathObj;
+    /// <summary>ワープ地点</summary>
     [SerializeField] Transform[] _warpPos;
     //非公開フィールド
     /// <summary>プレイヤーオブジェクト</summary>

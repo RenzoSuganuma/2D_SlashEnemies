@@ -620,14 +620,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5172978713351325156, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
-      propertyPath: _health
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 5172978713351325156, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
-      propertyPath: _warpPos.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5172978713351325156, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
       propertyPath: _warpPos.Array.data[0]
       value: 
       objectReference: {fileID: 1485435343}
@@ -638,14 +630,6 @@ PrefabInstance:
     - target: {fileID: 5918922394548389386, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
       propertyPath: m_Name
       value: Bringer Of Death
-      objectReference: {fileID: 0}
-    - target: {fileID: 5918922394548389386, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
-      propertyPath: m_TagString
-      value: Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 6243190891204997551, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8469496666721039794, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
       propertyPath: m_LocalPosition.x

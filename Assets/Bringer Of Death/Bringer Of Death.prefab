@@ -39,7 +39,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4044288499185244595}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1152147786365979754}
   m_Layer: 0
   m_Name: Bringer Of Death
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c0133fd93c6cc4ea3866b1cf6b63a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
+  _health: 500
   _moveSpeed: 10
   _playerCapturedDistance: 15
   _attackRange: 3
@@ -235,7 +235,9 @@ MonoBehaviour:
   _spellLim: 3
   _spellObj: {fileID: 1587231480259300799, guid: 16e327b2373b3604fb233470acf6e687, type: 3}
   _deathObj: {fileID: 3285137393624321049, guid: 6bb641f4275205d42b1d5dcc7509d7d7, type: 3}
-  _warpPos: []
+  _warpPos:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!70 &1152147786365979754
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
