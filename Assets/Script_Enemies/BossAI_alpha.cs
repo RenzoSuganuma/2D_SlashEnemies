@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>ボスのAI</summary>
-public class BringerofDeath : MonoBehaviour
+public class BossAI_alpha : MonoBehaviour
 {
     //Unityコンポーネント
     Animator _anim;
@@ -11,6 +11,7 @@ public class BringerofDeath : MonoBehaviour
     AudioSource _as;
     //公開フィールド
     [SerializeField] float _health;
+    [SerializeField] float _moveSpeed;
     [SerializeField] float _playerCapturedDistance;
     [SerializeField] float _attackRange;
     [SerializeField] float _spellRange;
@@ -42,6 +43,13 @@ public class BringerofDeath : MonoBehaviour
         //攻撃範囲内に居るかの判定
         _insideRange = Vector2.Distance(_player.transform.position,
         this.transform.position) < _attackRange && _captured;
+        if (_captured)
+        {
+            //目標へのベクトルの算出
+            var tv = (_player.transform.position - this.transform.position).normalized;
+            //その方向へ向かう
+            _rb2d.AddForce(tv * _moveSpeed, ForceMode2D.Force);
+        }
         #endregion
     }
     private void OnTriggerEnter2D(Collider2D collision)
