@@ -90,6 +90,12 @@ public class BossAI_alpha : MonoBehaviour
         this.gameObject.SetActive(true);
         Destroy(obj, 2);
     }
+    /// <summary>体力の取得メソッド</summary>
+    /// <returns></returns>
+    public float GetHP()
+    {
+        return _health;
+    }
     private void FixedUpdate()
     {
         Debug.Log($"{this.gameObject.name} : プレイヤー捕捉");

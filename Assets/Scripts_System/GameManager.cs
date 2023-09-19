@@ -25,6 +25,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _pausedUI;
     /// <summary>プレイヤーオブジェクト</summary>
     [SerializeField] GameObject _playerObj;
+    /// <summary>ボスオブジェクト</summary>
+    [SerializeField] GameObject _bossObj;
+    /// <summary>ボス名のテキスト</summary>
+    [SerializeField] Text _bossNameText;
+    /// <summary>ボス体力スライダー</summary>
+    [SerializeField] Slider _bossHpSlider;
     /// <summary>ゲーム経過時間保持変数</summary>
     float _elapsedTime = 0;
     /// <summary>プレイヤースコア</summary>
@@ -41,6 +47,13 @@ public class GameManager : MonoBehaviour
         _playerScore = 0;
         //デスカウント値の初期化
         _pDeathCount = 0;
+        //ボス名表示初期化と体力取得、更新
+        if (_bossObj != null)
+        {
+            _bossNameText.text = _bossObj.name;
+            _bossHpSlider.maxValue = _bossObj.GetComponent<BossAI_alpha>().GetHP();
+            _bossHpSlider.value = _bossObj.GetComponent<BossAI_alpha>().GetHP();
+        }
     }
     private void Update()
     {
@@ -52,6 +65,9 @@ public class GameManager : MonoBehaviour
         _hpSlider.value = _playerHealth / 100f;
         //スコアテキスト更新
         _playerScoreText.text = _playerScore.ToString();
+        //ボス体力の更新
+        if (_bossObj != null)
+            _bossHpSlider.value = _bossObj.GetComponent<BossAI_alpha>().GetHP();
         //死亡カウントの更新
         _playerDeathCountText.text = _pDeathCount.ToString();
         //体力が０の時
