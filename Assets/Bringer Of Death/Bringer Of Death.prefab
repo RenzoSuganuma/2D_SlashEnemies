@@ -108,7 +108,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.42, y: 1.67, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 484307012455923080}
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: -750047184722822154, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -231,10 +231,11 @@ MonoBehaviour:
   _playerCapturedDistance: 15
   _attackRange: 3
   _spellRange: 6
-  _damageFromPlayer: 100
+  _damageFromPlayer: 10
   _spellLim: 3
   _spellObj: {fileID: 1587231480259300799, guid: 16e327b2373b3604fb233470acf6e687, type: 3}
   _deathObj: {fileID: 3285137393624321049, guid: 6bb641f4275205d42b1d5dcc7509d7d7, type: 3}
+  _warpPos: []
 --- !u!70 &1152147786365979754
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

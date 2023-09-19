@@ -31,6 +31,7 @@ public class BossAI_alpha : MonoBehaviour
     [SerializeField] GameObject _spellObj;
     /// <summary>死亡時オブジェクト</summary>
     [SerializeField] GameObject _deathObj;
+    [SerializeField] Transform[] _warpPos;
     //非公開フィールド
     /// <summary>プレイヤーオブジェクト</summary>
     GameObject _player;
@@ -44,9 +45,7 @@ public class BossAI_alpha : MonoBehaviour
     bool _spelled = false;
     /// <summary>呪文攻撃カウント</summary>
     int _spellCnt = 0;
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>累積ダメージ量</summary>
     float _totalDamages = 0;
     //プレイヤー捕捉、待機ステート
     //通常攻撃、魔法攻撃
@@ -69,7 +68,7 @@ public class BossAI_alpha : MonoBehaviour
         }
     }
     /// <summary>死亡時処理</summary>
-    private void DeathBehaviour()
+    void DeathBehaviour()
     {
         //死亡処理
         var obj = Instantiate(_deathObj);
@@ -78,7 +77,18 @@ public class BossAI_alpha : MonoBehaviour
         Destroy(this);
         Destroy(obj, 2);
     }
-
+    /// <summary>プレイヤーの近くへワープする</summary>
+    void WarpBehaviour()
+    {
+        var obj = Instantiate(_deathObj);
+        obj.transform.position = this.transform.position;
+        this.gameObject.SetActive(false);
+        //ワープ処理
+        this.gameObject.transform.position = 
+            _warpPos[UnityEngine.Random.Range(0, _warpPos.Length)].transform.position;
+        this.gameObject.SetActive(true);
+        Destroy(obj, 2);
+    }
     private void FixedUpdate()
     {
         Debug.Log($"{this.gameObject.name} : プレイヤー捕捉");
@@ -149,8 +159,15 @@ public class BossAI_alpha : MonoBehaviour
         {
             //アニメーター
             _anim.SetTrigger("actHrt");
+            //ダメージ処理
             _health -= _damageFromPlayer;
-            
+            _totalDamages += _damageFromPlayer;
+            //累積ダメージが一定水準超えたら
+            if (_totalDamages > 50)
+            {
+                WarpBehaviour();
+                _totalDamages = 0;
+            }
         }
     }
     private void OnDrawGizmos()
