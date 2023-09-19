@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 /// <summary>ボスのAI</summary>
 public class BossAI_alpha : MonoBehaviour
 {
@@ -43,6 +46,8 @@ public class BossAI_alpha : MonoBehaviour
         //攻撃範囲内に居るかの判定
         _insideRange = Vector2.Distance(_player.transform.position,
         this.transform.position) < _attackRange && _captured;
+        //アニメーター
+        _anim.SetBool("Moving", _captured);
         if (_captured)
         {
             //目標へのベクトルの算出
