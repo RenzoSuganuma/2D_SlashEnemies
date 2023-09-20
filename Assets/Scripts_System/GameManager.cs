@@ -120,6 +120,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene1", LoadSceneMode.Single);
     }
+    /// <summary>ƒQ[ƒ€ƒV[ƒ“‚Ì“Ç‚İ‚İ</summary>
+    public void GotoGameSceneBoss()
+    {
+        SceneManager.LoadScene("GameScene2", LoadSceneMode.Single);
+    }
     public void QuitGame()
     {
 #if UNITY_EDITOR

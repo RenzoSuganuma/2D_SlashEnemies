@@ -15,6 +15,8 @@ public class BossAI_alpha : MonoBehaviour
     //公開フィールド
     /// <summary>体力</summary>
     [SerializeField] float _health;
+    /// <summary>最大体力</summary>
+    [SerializeField] float _maxHealth;
     /// <summary>移動速度</summary>
     [SerializeField] float _moveSpeed;
     /// <summary>プレイヤー捕捉距離</summary>
@@ -33,6 +35,14 @@ public class BossAI_alpha : MonoBehaviour
     [SerializeField] GameObject _deathObj;
     /// <summary>ワープ地点</summary>
     [SerializeField] Transform[] _warpPos;
+    /// <summary>BGMのオーディオソース</summary>
+    [SerializeField] AudioSource _bgmSource;
+    [SerializeField] AudioClip _attackV;
+    [SerializeField] AudioClip _deathV;
+    [SerializeField] AudioClip _bossMid;
+    [SerializeField] AudioClip _bossEnd;
+    public bool _ismiddleHP = false;
+    public bool _isendHP = false;
     //非公開フィールド
     /// <summary>プレイヤーオブジェクト</summary>
     GameObject _player;
@@ -67,6 +77,20 @@ public class BossAI_alpha : MonoBehaviour
         {
             DeathBehaviour();
         }
+        if (_health < _maxHealth * .7f && !_ismiddleHP)
+        {
+            _ismiddleHP = true;
+            _bgmSource.Stop();
+            _bgmSource.clip = _bossMid;
+            _bgmSource.Play();
+        }
+        if (_health < _maxHealth * .3f && !_isendHP)
+        {
+            _isendHP = true;
+            _bgmSource.Stop();
+            _bgmSource.clip = _bossEnd;
+            _bgmSource.Play();
+        }
     }
     /// <summary>死亡時処理</summary>
     void DeathBehaviour()
@@ -77,6 +101,7 @@ public class BossAI_alpha : MonoBehaviour
         this.gameObject.SetActive(false);
         Destroy(this);
         Destroy(obj, 2);
+        _as.PlayOneShot(_deathV);
     }
     /// <summary>プレイヤーの近くへワープする</summary>
     void WarpBehaviour()
@@ -135,6 +160,7 @@ public class BossAI_alpha : MonoBehaviour
     {
         //アニメーター
         _anim.SetTrigger("actAtk");
+        _as.PlayOneShot(_attackV);
         Debug.Log($"{this.gameObject.name}攻撃");
         _attacked = true;
         yield return new WaitForSeconds(t);
