@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8893903737076925576}
   - component: {fileID: 5505835696639674485}
+  - component: {fileID: 8162854813200634675}
   m_Layer: 0
   m_Name: GameMan
   m_TagString: GameController
@@ -44,12 +45,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e91d418e2973cb49a5f93f106abdb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerHealth: 10
+  _playerHealth: 100
   _pSpawnTransform: {fileID: 0}
   _elapsedTimeText: {fileID: 0}
   _playerScoreText: {fileID: 0}
   _playerDeathCountText: {fileID: 0}
-  _pausedText: {fileID: 0}
   _hpSlider: {fileID: 0}
   _pausedUI: {fileID: 0}
   _playerObj: {fileID: 0}
+  _bossObj: {fileID: 0}
+  _bossNameText: {fileID: 0}
+  _bossHpSlider: {fileID: 0}
+--- !u!114 &8162854813200634675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7647825903165668182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301845a5a74019c47aa497291b8a89bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aMixer: {fileID: 24100000, guid: 2ee46819d162b6746adf026b71134872, type: 2}
+  _masterSlider: {fileID: 0}
+  _bgmSlider: {fileID: 0}
+  _voiceSlider: {fileID: 0}
+  _inputFeild: {fileID: 0}
+  _playerName: {fileID: 0}

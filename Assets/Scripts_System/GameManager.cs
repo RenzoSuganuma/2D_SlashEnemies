@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 /// <summary>
 /// プレイヤーのステータスとゲームのステータスを管理するクラス
@@ -17,8 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text _playerScoreText;
     /// <summary>デスカウントのテキスト</summary>
     [SerializeField] Text _playerDeathCountText;
-    /// <summary>一時停止のテキスト</summary>
-    [SerializeField] Text _pausedText;
     /// <summary>プレイヤー体力スライダー</summary>
     [SerializeField] Slider _hpSlider;
     /// <summary>一時停止オブジェクト</summary>
@@ -114,5 +114,18 @@ public class GameManager : MonoBehaviour
         _isPaused = false;
         Time.timeScale = 1;
         _pausedUI.SetActive(false);
+    }
+    /// <summary>ゲームシーンの読み込み</summary>
+    public void GotoGameSceneNormal()
+    {
+        SceneManager.LoadScene("GameScene1", LoadSceneMode.Single);
+    }
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
     }
 }
