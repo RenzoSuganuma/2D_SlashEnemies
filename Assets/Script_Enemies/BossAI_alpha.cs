@@ -41,19 +41,19 @@ public class BossAI_alpha : MonoBehaviour
     [SerializeField] AudioClip _deathV;
     [SerializeField] AudioClip _bossMid;
     [SerializeField] AudioClip _bossEnd;
-    public bool _ismiddleHP = false;
-    public bool _isendHP = false;
-    //非公開フィールド
+    bool _ismiddleHP = false;
+    bool _isendHP = false;
+    //非公開フィールドw
     /// <summary>プレイヤーオブジェクト</summary>
     GameObject _player;
     /// <summary>捕捉フラグ</summary>
-    bool _captured = false;
+    public bool _captured = false;
     /// <summary>攻撃範囲内捕捉フラグ</summary>
-    bool _insideRange = false;
+    public bool _insideRange = false;
     /// <summary>攻撃フラグ</summary>
-    bool _attacked = false;
+    public bool _attacked = false;
     /// <summary>呪文攻撃フラグ</summary>
-    bool _spelled = false;
+    public bool _spelled = false;
     /// <summary>呪文攻撃カウント</summary>
     int _spellCnt = 0;
     /// <summary>累積ダメージ量</summary>
@@ -91,16 +91,26 @@ public class BossAI_alpha : MonoBehaviour
             _bgmSource.clip = _bossEnd;
             _bgmSource.Play();
         }
+        if(this.gameObject.transform.position.y + 3 < _player.transform.position.y)
+        {
+            //ワープ処理
+            this.gameObject.transform.position =
+                _player.transform.position +
+                new Vector3(UnityEngine.Random.Range(-1, 1), _player.transform.position.y, 0);
+        }
     }
     /// <summary>死亡時処理</summary>
     void DeathBehaviour()
     {
+        //ゲームマネージャーのイベントを呼び出す
+        GameObject.FindAnyObjectByType<GameManager>().AddScore(999);
+        GameObject.FindAnyObjectByType<GameManager>().BossDeathEvent(this.gameObject);
         //死亡処理
         var obj = Instantiate(_deathObj);
         obj.transform.position = this.transform.position;
         this.gameObject.SetActive(false);
         Destroy(this);
-        Destroy(obj, 2);
+        Destroy(obj, .5f);
         _as.PlayOneShot(_deathV);
     }
     /// <summary>プレイヤーの近くへワープする</summary>
@@ -111,8 +121,13 @@ public class BossAI_alpha : MonoBehaviour
         this.gameObject.SetActive(false);
         //ワープ処理
         this.gameObject.transform.position = 
-            _warpPos[UnityEngine.Random.Range(0, _warpPos.Length)].transform.position;
+            _player.transform.position + 
+            new Vector3(UnityEngine.Random.Range(-10, 10), UnityEngine.Random.Range(1, 5), 0);
         this.gameObject.SetActive(true);
+        if (_captured && _insideRange && _attacked && _spelled)
+        {
+            _captured = _insideRange = _attacked = _spelled = false;
+        }
         Destroy(obj, 2);
     }
     /// <summary>体力の取得メソッド</summary>
@@ -193,7 +208,7 @@ public class BossAI_alpha : MonoBehaviour
             //アニメーター
             _anim.SetTrigger("actHrt");
             //ダメージ処理
-            _health -= _damageFromPlayer;
+            _health -= (_damageFromPlayer + UnityEngine.Random.Range(10, 30));
             _totalDamages += _damageFromPlayer;
             //累積ダメージが一定水準超えたら
             if (_totalDamages > 50)

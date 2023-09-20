@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
         {
             Debug.Log("ダメージ");
             //体力の更新
-            _gm.ModifyHealth(-10);
+            _gm.ModifyHealth(UnityEngine.Random.Range(-30,-10));
             //ノックバック処理
             var v = (collision.gameObject.transform.position - this.gameObject.transform.position).normalized;
             Vector2 damageVec = new Vector2(v.x, 0);
