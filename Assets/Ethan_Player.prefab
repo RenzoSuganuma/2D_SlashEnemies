@@ -243,6 +243,8 @@ MonoBehaviour:
   _pDefaultMat: {fileID: 2100000, guid: 15403780b24c50440a99fb05e784a2c9, type: 2}
   _pGodMat: {fileID: 2100000, guid: fcc527ed886586c40a4ea285c7fc60f1, type: 2}
   _getsuga: {fileID: 3132285862861631067, guid: cc40c1dee4cf6404aa343e2362618804, type: 3}
+  _getsugaLim: 10
+  _getsugaText: {fileID: 0}
 --- !u!1 &7500371940721891501
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +309,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0028665066, y: -0.1060521}
+  m_Offset: {x: 0.0028665066, y: -0.1381855}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -318,5 +320,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0031953, y: 0.19171101}
+  m_Size: {x: 2.0031953, y: 0.8450937}
   m_EdgeRadius: 0

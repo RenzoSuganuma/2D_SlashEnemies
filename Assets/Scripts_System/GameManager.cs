@@ -41,8 +41,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _gotoNextText;
     /// <summary>ボス体力スライダー</summary>
     [SerializeField] Slider _bossHpSlider;
+    [SerializeField] SettingsManager _sm;
     /// <summary>ボス撃破ＯＢＪ</summary>
     [SerializeField] GameObject _bossDefeatedPanel;
+    [SerializeField] int _deathLim;
     /// <summary>ゲーム経過時間保持変数</summary>
     public float _elapsedTime = 0;
     /// <summary>プレイヤースコア</summary>
@@ -53,12 +55,15 @@ public class GameManager : MonoBehaviour
     bool _isPaused = false;
     private void Start()
     {
-        //経過時間の変数値の初期化
-        _elapsedTime = 0;
-        //スコア値の初期化
-        _playerScore = 0;
-        //デスカウント値の初期化
-        _pDeathCount = 0;
+        if (SceneManager.GetActiveScene().name != "GameScene2")
+        {
+            //経過時間の変数値の初期化
+            _elapsedTime = 0;
+            //スコア値の初期化
+            _playerScore = 0;
+            //デスカウント値の初期化
+            _pDeathCount = 0;
+        }
         //ボス名表示初期化と体力取得、更新
         if (_bossObj != null)
         {
@@ -85,6 +90,8 @@ public class GameManager : MonoBehaviour
         //体力が０の時
         if (_playerHealth <= 0) { Respawn(); }
         if (_playerScore >= _scoreGotoNext) { _gotoNextText.SetActive(true); };
+        //死亡原回数
+
     }
     /// <summary>プレイヤーのリスポーン処理</summary>
     private void Respawn()
@@ -135,6 +142,7 @@ public class GameManager : MonoBehaviour
         //タイムスケールの操作
         Time.timeScale = .2f;
         var boss = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>();
+        boss.m_Follow = bossObj.transform;
         boss.m_LookAt = bossObj.transform;
         boss.m_Lens.OrthographicSize = 2;
         _bossDefeatedPanel.SetActive(true);
@@ -158,7 +166,7 @@ public class GameManager : MonoBehaviour
         {
             rank = "C";
         }
-        _rankingText.text = "<color=red>評価</color> : " + $"<color=red>{rank}</color>";
+        _rankingText.text = "<color=red>評価</color> : " + $"<color=yellow>{rank}</color>";
     }
     /// <summary>ゲームシーンの読み込み</summary>
     public void GotoGameSceneNormal()
@@ -170,7 +178,8 @@ public class GameManager : MonoBehaviour
     public void GotoGameSceneBoss()
     {
         Time.timeScale = 1;
-        GetComponent<SettingsManager>().SetDatas();
+        Debug.Log("ボス戦へ移行");
+        _sm.SetDatas();
         SceneManager.LoadScene("GameScene2", LoadSceneMode.Single);
     }
     /// <summary>ゲームシーンの読み込み</summary>

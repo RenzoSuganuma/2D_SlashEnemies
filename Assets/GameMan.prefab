@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: 100
+  _scoreGotoNext: 300
   _pSpawnTransform: {fileID: 0}
   _elapsedTimeText: {fileID: 0}
   _playerScoreText: {fileID: 0}
@@ -55,7 +56,18 @@ MonoBehaviour:
   _playerObj: {fileID: 0}
   _bossObj: {fileID: 0}
   _bossNameText: {fileID: 0}
+  _scoreText: {fileID: 0}
+  _clearTimeText: {fileID: 0}
+  _deathcountText: {fileID: 0}
+  _rankingText: {fileID: 0}
+  _gotoNextText: {fileID: 0}
   _bossHpSlider: {fileID: 0}
+  _sm: {fileID: 8162854813200634675}
+  _bossDefeatedPanel: {fileID: 0}
+  _deathLim: 0
+  _elapsedTime: 0
+  _playerScore: 0
+  _pDeathCount: 0
 --- !u!114 &8162854813200634675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,5 +84,9 @@ MonoBehaviour:
   _masterSlider: {fileID: 0}
   _bgmSlider: {fileID: 0}
   _voiceSlider: {fileID: 0}
+  _eTime: {fileID: 0}
+  _dCnt: {fileID: 0}
+  _pScr: {fileID: 0}
   _inputFeild: {fileID: 0}
   _playerName: {fileID: 0}
+  _gm: {fileID: 5505835696639674485}

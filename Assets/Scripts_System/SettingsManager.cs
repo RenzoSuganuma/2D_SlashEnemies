@@ -4,25 +4,30 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using System.IO;
 public class SettingsManager : MonoBehaviour
 {
     [SerializeField] AudioMixer _aMixer;
     [SerializeField] Slider _masterSlider;
     [SerializeField] Slider _bgmSlider;
     [SerializeField] Slider _voiceSlider;
-    public int _deathCount = 0;
-    public int _score = 0;
-    public float _elapsedTime = 0;
+    [SerializeField] Text _eTime;
+    [SerializeField] Text _dCnt;
+    [SerializeField] Text _pScr;
     /// <summary>名前入力フィールド</summary>
     [SerializeField] InputField _inputFeild;
     /// <summary>プレイヤー名</summary>
     [SerializeField] Text _playerName;
+    [SerializeField] GameManager _gm;
     string jsonData = string.Empty;
     private void Start()
     {
+        StreamReader reader = new StreamReader(Application.dataPath + "/test.json");
+        string data = reader.ReadToEnd();
+        reader.Close();
+        Debug.Log($"JSONファイルからの読み込みデーター：{data}");
         PlayerSaveDataContainer psdc =
-            JsonUtility.FromJson<PlayerSaveDataContainer>(PlayerPrefs.GetString("userDatas"));
+            JsonUtility.FromJson<PlayerSaveDataContainer>(data);
         //オーディオミキサー音量の設定
         _aMixer.SetFloat("MasterVol", psdc._masterVol);
         _aMixer.SetFloat("BGMVol", psdc._bgmVol);
@@ -30,11 +35,9 @@ public class SettingsManager : MonoBehaviour
         //プレイヤー名設定
         _playerName.text = psdc._playerName;
         //ゲームマネージャーのデーター初期化
-        var gm = GetComponent<GameManager>();
-        gm._playerScore = psdc._score;
-        gm._pDeathCount = psdc._deathcount;
-        gm._elapsedTime = psdc._elapsedtime;
-        Debug.Log($"STARTプレイヤーデータ{PlayerPrefs.GetString("userDatas")}");
+        _gm._playerScore = psdc._score;
+        _gm._pDeathCount = psdc._deathcount;
+        _gm._elapsedTime = psdc._elapsedtime;
     }
     private void OnDisable()
     {
@@ -50,16 +53,13 @@ public class SettingsManager : MonoBehaviour
         psdc._masterVol = _masterSlider.value;
         psdc._bgmVol = _bgmSlider.value;
         psdc._voiceVol = _voiceSlider.value;
-        //ゲームマネージャーからデーター取得
-        var gm = GetComponent<GameManager>();
-        psdc._score = gm._playerScore;
-        psdc._deathcount = gm._pDeathCount;
-        psdc._elapsedtime = gm._elapsedTime;
         //JSON化
         jsonData = JsonUtility.ToJson(psdc);
-        //データのセーブ
-        PlayerPrefs.SetString("userDatas", jsonData);
-        Debug.Log($"プレイヤーデータ{PlayerPrefs.GetString("userDatas")}");
+        //データ書き込み
+        StreamWriter writer = new StreamWriter(Application.dataPath + "/test.json");
+        writer.WriteLine(jsonData);
+        writer.Flush();
+        writer.Close();
     }
     public void SetDatas()
     {
@@ -69,19 +69,24 @@ public class SettingsManager : MonoBehaviour
         psdc._bgmVol = _bgmSlider.value;
         psdc._voiceVol = _voiceSlider.value;
         //ゲームマネージャーからデーター取得
-        var gm = GetComponent<GameManager>();
-        psdc._score = gm._playerScore;
-        psdc._deathcount = gm._pDeathCount;
-        psdc._elapsedtime = gm._elapsedTime;
+        Debug.Log($"GMからのデータ{_gm._playerScore},{_gm._pDeathCount},{_gm._elapsedTime}");
+        psdc._score = int.Parse(_pScr.text);
+        psdc._deathcount = int.Parse(_dCnt.text);
+        psdc._elapsedtime = float.Parse(_eTime.text);
         //JSON化
         jsonData = JsonUtility.ToJson(psdc);
-        //データのセーブ
-        PlayerPrefs.SetString("userDatas", jsonData);
-        Debug.Log($"プレイヤーデータ{PlayerPrefs.GetString("userDatas")}");
+        //データ書き込み
+        StreamWriter writer = new StreamWriter(Application.dataPath + "/test.json");
+        writer.WriteLine(jsonData);
+        writer.Flush();
+        writer.Close();
     }
     public void ResetDatas()
     {
-        PlayerPrefs.DeleteAll();
+        StreamWriter writer = new StreamWriter(Application.dataPath + "/test.json");
+        writer.WriteLine(" ");
+        writer.Flush();
+        writer.Close();
     }
     public void SetMasterVolume()
     {

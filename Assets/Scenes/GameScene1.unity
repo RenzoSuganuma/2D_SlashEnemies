@@ -42132,16 +42132,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5970051428366804562, guid: bfc12ece3dc030242aa891efe8236783, type: 3}
-      propertyPath: _getsugaLim
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970051428366804562, guid: bfc12ece3dc030242aa891efe8236783, type: 3}
       propertyPath: _getsugaText
       value: 
       objectReference: {fileID: 794352562}
     - target: {fileID: 6409624486366820553, guid: bfc12ece3dc030242aa891efe8236783, type: 3}
       propertyPath: m_Name
       value: Ethan_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220381905673253442, guid: bfc12ece3dc030242aa891efe8236783, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.4675649
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220381905673253442, guid: bfc12ece3dc030242aa891efe8236783, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.4334663
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220381905673253442, guid: bfc12ece3dc030242aa891efe8236783, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220381905673253442, guid: bfc12ece3dc030242aa891efe8236783, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.265625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -42386,10 +42398,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1969668342}
     - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
-      propertyPath: _scoreGotoNext
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
       propertyPath: _elapsedTimeText
       value: 
       objectReference: {fileID: 572300935}
@@ -42409,6 +42417,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameMan
       objectReference: {fileID: 0}
+    - target: {fileID: 8162854813200634675, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
+      propertyPath: _dCnt
+      value: 
+      objectReference: {fileID: 1255350077}
+    - target: {fileID: 8162854813200634675, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
+      propertyPath: _pScr
+      value: 
+      objectReference: {fileID: 961525046}
+    - target: {fileID: 8162854813200634675, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
+      propertyPath: _eTime
+      value: 
+      objectReference: {fileID: 572300935}
     - target: {fileID: 8162854813200634675, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
       propertyPath: _bgmSlider
       value: 
