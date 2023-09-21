@@ -59688,6 +59688,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2733882579680737306, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a2969cf4064492842bf5f3244c6c037e, type: 2}
     - target: {fileID: 5172978713351325156, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
       propertyPath: _deathV
       value: 
@@ -59708,6 +59712,14 @@ PrefabInstance:
       propertyPath: _bossMid
       value: 
       objectReference: {fileID: 8300000, guid: 5ed29c75ddeb9074ebc54b170361afbb, type: 3}
+    - target: {fileID: 5172978713351325156, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
+      propertyPath: _hpEndMat
+      value: 
+      objectReference: {fileID: 2100000, guid: b5f407091255d0a41893ca11116b4a5a, type: 2}
+    - target: {fileID: 5172978713351325156, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
+      propertyPath: _hpMidMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 6cef26f6b7df33a41a709f6d8b4ca260, type: 2}
     - target: {fileID: 5172978713351325156, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
       propertyPath: _spellLim
       value: 10

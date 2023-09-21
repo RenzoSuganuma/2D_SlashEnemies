@@ -41,6 +41,8 @@ public class BossAI_alpha : MonoBehaviour
     [SerializeField] AudioClip _deathV;
     [SerializeField] AudioClip _bossMid;
     [SerializeField] AudioClip _bossEnd;
+    [SerializeField] Material _hpMidMat;
+    [SerializeField] Material _hpEndMat;
     bool _ismiddleHP = false;
     bool _isendHP = false;
     //非公開フィールドw
@@ -83,6 +85,7 @@ public class BossAI_alpha : MonoBehaviour
             _bgmSource.Stop();
             _bgmSource.clip = _bossMid;
             _bgmSource.Play();
+            _sr.material = _hpMidMat;
         }
         if (_health < _maxHealth * .3f && !_isendHP)
         {
@@ -90,6 +93,7 @@ public class BossAI_alpha : MonoBehaviour
             _bgmSource.Stop();
             _bgmSource.clip = _bossEnd;
             _bgmSource.Play();
+            _sr.material = _hpEndMat;
         }
         if(this.gameObject.transform.position.y + 3 < _player.transform.position.y)
         {
