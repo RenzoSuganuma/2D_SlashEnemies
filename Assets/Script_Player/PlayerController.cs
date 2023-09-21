@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 /// <summary>
 /// プレイヤーの物理的挙動と特定のオブジェクト操作クラス
 /// </summary>
@@ -50,6 +51,13 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
     [SerializeField] Material _pGodMat;
     /// <summary>月牙天衝のオブジェクト</summary>
     [SerializeField] GameObject _getsuga;
+    /// <summary>月牙天衝の上限</summary>
+    [SerializeField] int _getsugaLim;
+    /// <summary>月牙天衝の残数テキスト</summary>
+    [SerializeField] Text _getsugaText;
+    /// <summary>月牙天衝の残数</summary>
+    int _getsugaCnt;
+
     private void Awake()
     {
         //デバイス入力プロバイダーを取得
@@ -69,6 +77,8 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
         _mc = new PlayerMotionController(_anim);
         //無敵モード起動
         StartCoroutine(Godmode(3));
+        //月牙天衝の残数の初期化
+        _getsugaCnt = _getsugaLim * 2;
     }
     private void OnEnable()
     {
@@ -96,6 +106,8 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
     {
         PlayerMoveSequence();
         PlayerJumpSequence();
+        //月牙天衝残数表示
+        _getsugaText.text = (_getsugaCnt / 2).ToString();
     }
     private void PlayerMoveSequence()
     {
@@ -270,7 +282,7 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
     {
         if (context.action.name == "Aim")
         {
-            if (context.ReadValueAsButton())
+            if (context.ReadValueAsButton() && 0 < _getsugaCnt)
             {
                 Debug.Log("シフト攻撃");
                 _mc.ActionShiftAttack();
@@ -280,6 +292,7 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
                 go.transform.position = this.transform.position;
                 //目標ベクトルの初期化
                 component._targetv = new Vector2(!_sr.flipX ? 1 : -1, 0);
+                _getsugaCnt--;
             }
         }
     }
