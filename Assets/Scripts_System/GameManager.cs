@@ -141,9 +141,24 @@ public class GameManager : MonoBehaviour
         _clearTimeText.text = "クリア時間 : " + _elapsedTime.ToString("F2");
         _scoreText.text = "スコア : " + _playerScore.ToString();
         _deathcountText.text = "死亡数 : " + _pDeathCount.ToString();
-        //string rank;
-        //if(_clearTimeText)
-        _rankingText.text = "<color=red>評価</color> : ";
+        string rank = "";
+        if (_elapsedTime < 100 && _pDeathCount < 5 && _playerScore > 1500)
+        {
+            rank = "S";
+        }
+        else if (_elapsedTime < 200 && _pDeathCount < 10)
+        {
+            rank = "A";
+        }
+        else if (_elapsedTime < 300 && _pDeathCount < 15)
+        {
+            rank = "B";
+        }
+        else if (_elapsedTime < 400 && _pDeathCount < 20)
+        {
+            rank = "C";
+        }
+        _rankingText.text = "<color=red>評価</color> : " + $"<color=red>{rank}</color>";
     }
     /// <summary>ゲームシーンの読み込み</summary>
     public void GotoGameSceneNormal()
@@ -155,7 +170,7 @@ public class GameManager : MonoBehaviour
     public void GotoGameSceneBoss()
     {
         Time.timeScale = 1;
-        GameObject.FindAnyObjectByType<SettingsManager>().SetDatas();
+        GetComponent<SettingsManager>().SetDatas();
         SceneManager.LoadScene("GameScene2", LoadSceneMode.Single);
     }
     /// <summary>ゲームシーンの読み込み</summary>

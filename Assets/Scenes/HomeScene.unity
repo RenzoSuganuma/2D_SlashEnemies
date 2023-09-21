@@ -44023,7 +44023,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1722773319}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
-        m_MethodName: SetDatas
+        m_MethodName: SetDatasOnHome
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
