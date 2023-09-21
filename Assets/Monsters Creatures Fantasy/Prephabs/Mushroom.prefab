@@ -128,7 +128,7 @@ MonoBehaviour:
   _hpBar: {fileID: 7905176370463238512}
   _playerCapturedMat: {fileID: 2100000, guid: 73e79dbb8310c18479f01169a4968c38, type: 2}
   _defaultMat: {fileID: 2100000, guid: 1a02236c799340e40a6b4babcc20f662, type: 2}
-  _dropObj: {fileID: 7422438642359979986, guid: 44cfd6ca23b562c4da32e41bfbae2555, type: 3}
+  _dropObj: {fileID: 4651405318057613451, guid: 3553fc8c5d994d842814d7467375f3b3, type: 3}
 --- !u!50 &2459476876854862770
 Rigidbody2D:
   serializedVersion: 4

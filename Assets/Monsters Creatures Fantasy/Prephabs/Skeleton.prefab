@@ -205,7 +205,7 @@ MonoBehaviour:
   _hpBar: {fileID: 396980291436155232}
   _playerCapturedMat: {fileID: 2100000, guid: 20023b470f21a3a4a8e740e8ada08e4d, type: 2}
   _defaultMat: {fileID: 2100000, guid: 8c3cd295cc14b1b46b381eccdba99268, type: 2}
-  _dropObj: {fileID: 7422438642359979986, guid: 44cfd6ca23b562c4da32e41bfbae2555, type: 3}
+  _dropObj: {fileID: 4651405318057613451, guid: 3553fc8c5d994d842814d7467375f3b3, type: 3}
 --- !u!70 &1820142789155678781
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
