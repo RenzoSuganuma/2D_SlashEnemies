@@ -242,6 +242,7 @@ MonoBehaviour:
   _playerDashForce: 100
   _pDefaultMat: {fileID: 2100000, guid: 15403780b24c50440a99fb05e784a2c9, type: 2}
   _pGodMat: {fileID: 2100000, guid: fcc527ed886586c40a4ea285c7fc60f1, type: 2}
+  _getsuga: {fileID: 3132285862861631067, guid: cc40c1dee4cf6404aa343e2362618804, type: 3}
 --- !u!1 &7500371940721891501
 GameObject:
   m_ObjectHideFlags: 0

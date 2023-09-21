@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
     [SerializeField] Material _pDefaultMat;
     /// <summary>無敵モードのマテリアル</summary>
     [SerializeField] Material _pGodMat;
+    /// <summary>月牙天衝のオブジェクト</summary>
+    [SerializeField] GameObject _getsuga;
     private void Awake()
     {
         //デバイス入力プロバイダーを取得
@@ -77,6 +79,7 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
         _input.onActionTriggered += OnLook;
         _input.onActionTriggered += OnMove;
         _input.onActionTriggered += OnPause;
+        _input.onActionTriggered += OnAim;
     }
     private void OnDisable()
     {
@@ -87,6 +90,7 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
         _input.onActionTriggered -= OnLook;
         _input.onActionTriggered -= OnMove;
         _input.onActionTriggered -= OnPause;
+        _input.onActionTriggered -= OnAim;
     }
     private void FixedUpdate()
     {
@@ -259,6 +263,23 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
             {
                 Debug.Log("一時停止");
                 GameObject.FindAnyObjectByType<GameManager>().Pause();
+            }
+        }
+    }
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        if (context.action.name == "Aim")
+        {
+            if (context.ReadValueAsButton())
+            {
+                Debug.Log("シフト攻撃");
+                _mc.ActionShiftAttack();
+                //オブジェクトの生成
+                var go = Instantiate(_getsuga);
+                var component = go.GetComponent<GetsugaController>();
+                go.transform.position = this.transform.position;
+                //目標ベクトルの初期化
+                component._targetv = new Vector2(!_sr.flipX ? 1 : -1, 0);
             }
         }
     }

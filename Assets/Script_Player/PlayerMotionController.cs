@@ -67,6 +67,11 @@ public class PlayerMotionController
     {
         _anim.SetTrigger("actJumpingAttack");
     }
+    /// <summary>シフト攻撃時に呼び出されるメソッド[被デリゲート登録]</summary>
+    public void ActionShiftAttack()
+    {
+        _anim.SetTrigger("actShiftAttack");
+    }
     /// <summary>攻撃モーション中のアニメーションイベント</summary>
     void SetAttackCount(int count)
     {
