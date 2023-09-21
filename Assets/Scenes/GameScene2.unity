@@ -1179,6 +1179,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64dc656c2d8c19141a2dbdc53fe5ba79, type: 3}
+--- !u!1 &783003289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3397515235445743717, guid: caeb9010f9a65624f8d6d934261ea544, type: 3}
+  m_PrefabInstance: {fileID: 3402155875635056722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &805462063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59680,6 +59685,17 @@ Transform:
   - {fileID: 2095668289}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1563704240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4534950577437569287, guid: caeb9010f9a65624f8d6d934261ea544, type: 3}
+  m_PrefabInstance: {fileID: 3402155875635056722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1597759814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60875,6 +60891,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1722773317}
+    - target: {fileID: 5709078502442548388, guid: caeb9010f9a65624f8d6d934261ea544, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5723161479153436004, guid: caeb9010f9a65624f8d6d934261ea544, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -60899,6 +60919,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1722773318}
+    - target: {fileID: 6795109625480954602, guid: caeb9010f9a65624f8d6d934261ea544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1722773317}
+    - target: {fileID: 6795109625480954602, guid: caeb9010f9a65624f8d6d934261ea544, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GotoHome
+      objectReference: {fileID: 0}
     - target: {fileID: 7897912097509039419, guid: caeb9010f9a65624f8d6d934261ea544, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -60907,6 +60935,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1722773317}
+    - target: {fileID: 8504980189729040283, guid: caeb9010f9a65624f8d6d934261ea544, type: 3}
+      propertyPath: m_Name
+      value: lCount
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -60984,9 +61016,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 193538235}
     - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
+      propertyPath: _deathLim
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
       propertyPath: _hpSlider
       value: 
       objectReference: {fileID: 2123894341}
+    - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
+      propertyPath: _lifeText
+      value: 
+      objectReference: {fileID: 1563704240}
     - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
       propertyPath: _pausedUI
       value: 
@@ -61003,6 +61043,10 @@ PrefabInstance:
       propertyPath: _pausedText
       value: 
       objectReference: {fileID: 1447935620}
+    - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
+      propertyPath: _gameOverOBJ
+      value: 
+      objectReference: {fileID: 783003289}
     - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
       propertyPath: _rankingText
       value: 

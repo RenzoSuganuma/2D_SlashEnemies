@@ -35,8 +35,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text _clearTimeText;
     /// <summary>死亡カウントテキスト</summary>
     [SerializeField] Text _deathcountText;
-    /// <summary>死亡カウントテキスト</summary>
+    /// <summary>ランキングテキスト</summary>
     [SerializeField] Text _rankingText;
+    /// <summary>残機テキスト</summary>
+    [SerializeField] Text _lifeText;
     /// <summary>次へ進めのテキスト</summary>
     [SerializeField] GameObject _gotoNextText;
     /// <summary>ボス体力スライダー</summary>
@@ -44,6 +46,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] SettingsManager _sm;
     /// <summary>ボス撃破ＯＢＪ</summary>
     [SerializeField] GameObject _bossDefeatedPanel;
+    /// <summary>ガメオベラOBJ</summary>
+    [SerializeField] GameObject _gameOverOBJ;
+    /// <summary>死亡回数限度値</summary>
     [SerializeField] int _deathLim;
     /// <summary>ゲーム経過時間保持変数</summary>
     public float _elapsedTime = 0;
@@ -91,7 +96,13 @@ public class GameManager : MonoBehaviour
         if (_playerHealth <= 0) { Respawn(); }
         if (_playerScore >= _scoreGotoNext) { _gotoNextText.SetActive(true); };
         //死亡原回数
-
+        if(_pDeathCount >= _deathLim)
+        {
+            Time.timeScale = 0;
+            _gameOverOBJ.SetActive(true);
+        }
+        //残機表示更新
+        _lifeText.text = "残機：" + (_deathLim).ToString();
     }
     /// <summary>プレイヤーのリスポーン処理</summary>
     private void Respawn()
@@ -108,6 +119,7 @@ public class GameManager : MonoBehaviour
         _playerObj.SetActive(true);
         //デスカウントを加算
         _pDeathCount++;
+        _deathLim--;
     }
     /// <summary>体力を更新するメソッド。引数に加算する値を代入</summary>
     /// <param name="health"></param>
@@ -150,19 +162,19 @@ public class GameManager : MonoBehaviour
         _scoreText.text = "スコア : " + _playerScore.ToString();
         _deathcountText.text = "死亡数 : " + _pDeathCount.ToString();
         string rank = "";
-        if (_elapsedTime < 100 && _pDeathCount < 5 && _playerScore > 1500)
+        if (_elapsedTime < 100 && _pDeathCount < 3 && _playerScore > 1500)
         {
             rank = "S";
         }
-        else if (_elapsedTime < 200 && _pDeathCount < 10)
+        else if (_elapsedTime < 200 && _pDeathCount < 5)
         {
             rank = "A";
         }
-        else if (_elapsedTime < 300 && _pDeathCount < 15)
+        else if (_elapsedTime < 300 && _pDeathCount < 7)
         {
             rank = "B";
         }
-        else if (_elapsedTime < 400 && _pDeathCount < 20)
+        else if (_elapsedTime < 400 && _pDeathCount < 10)
         {
             rank = "C";
         }

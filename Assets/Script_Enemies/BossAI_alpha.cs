@@ -95,7 +95,7 @@ public class BossAI_alpha : MonoBehaviour
             _bgmSource.Play();
             _sr.material = _hpEndMat;
         }
-        if(this.gameObject.transform.position.y + 3 < _player.transform.position.y)
+        if(this.gameObject.transform.position.y + 5 < _player.transform.position.y)
         {
             //ƒ[ƒvˆ—
             this.gameObject.transform.position =
