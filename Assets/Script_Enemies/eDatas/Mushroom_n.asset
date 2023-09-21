@@ -15,7 +15,7 @@ MonoBehaviour:
   _hp: 10
   _ms: 5
   _patrollRadius: 4
-  _playerCaptureDistance: 3
+  _playerCaptureDistance: 5
   _attackDistance: 2
   _dp: 10
   _rayLength: 1

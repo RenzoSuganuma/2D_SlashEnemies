@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _playerHealth;
     /// <summary>次に進めるスコア数</summary>
     [SerializeField] int _scoreGotoNext;
+    [SerializeField] GameObject _nextGate;
     /// <summary>プレイヤー再スポーン時の座標</summary>
     [SerializeField] Transform _pSpawnTransform;
     /// <summary>ゲーム経過時間</summary>
@@ -60,6 +61,9 @@ public class GameManager : MonoBehaviour
     bool _isPaused = false;
     private void Start()
     {
+        //マウスカーソルロック
+        if (SceneManager.GetActiveScene().name != "HomeScene")
+            Cursor.lockState = CursorLockMode.Locked;
         if (SceneManager.GetActiveScene().name != "GameScene2")
         {
             //経過時間の変数値の初期化
@@ -94,9 +98,14 @@ public class GameManager : MonoBehaviour
         _playerDeathCountText.text = _pDeathCount.ToString();
         //体力が０の時
         if (_playerHealth <= 0) { Respawn(); }
-        if (_playerScore >= _scoreGotoNext) { _gotoNextText.SetActive(true); };
+        //ボス部屋への道を有効化
+        if (_playerScore >= _scoreGotoNext)
+        {
+            _nextGate.SetActive(true);
+            _gotoNextText.SetActive(true);
+        };
         //死亡原回数
-        if(_pDeathCount >= _deathLim)
+        if (_pDeathCount >= _deathLim)
         {
             Time.timeScale = 0;
             _gameOverOBJ.SetActive(true);
@@ -136,6 +145,8 @@ public class GameManager : MonoBehaviour
     /// <summary>ゲームの一時停止</summary>
     public void Pause()
     {
+        //カーソル表示
+        Cursor.lockState = CursorLockMode.None;
         _isPaused = true;
         Time.timeScale = 0;
         _pausedUI.SetActive(true);
@@ -143,6 +154,8 @@ public class GameManager : MonoBehaviour
     /// <summary>ゲームの再開</summary>
     public void Resume()
     {
+        //カーソル非表示
+        Cursor.lockState = CursorLockMode.Locked;
         _isPaused = false;
         Time.timeScale = 1;
         _pausedUI.SetActive(false);
@@ -151,6 +164,8 @@ public class GameManager : MonoBehaviour
     /// <param name="bossObj"></param>
     public void BossDeathEvent(GameObject bossObj)
     {
+        //カーソル表示
+        Cursor.lockState = CursorLockMode.None;
         //タイムスケールの操作
         Time.timeScale = .2f;
         var boss = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>();
