@@ -63,7 +63,8 @@ public class FlyingEye_AI : EnemyAI_CORE
         var go = GameObject.Instantiate(_dropObj);
         go.transform.position = this.transform.position;
         Destroy(this.GetComponent<FlyingEye_AI>());
-        Destroy(this.gameObject, 5f);
+        Destroy(this.gameObject, 3f);
+        Destroy(go, .5f);
         base.AddPlayerScore();
         base.PlayDeathVoice();
     }

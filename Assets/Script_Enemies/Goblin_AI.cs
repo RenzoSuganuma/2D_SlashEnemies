@@ -61,8 +61,9 @@ public class Goblin_AI : EnemyAI_CORE
         //ドロップアイテムの生成
         var go = GameObject.Instantiate(_dropObj);
         go.transform.position = this.transform.position;
-        Destroy(this.GetComponent<Goblin_AI>());
-        Destroy(this.gameObject, 5f);
+        Destroy(this.GetComponent<Goblin_AI>()); 
+        Destroy(this.gameObject, 3f);
+        Destroy(go, .5f);
         base.AddPlayerScore();
         base.PlayDeathVoice();
     }
