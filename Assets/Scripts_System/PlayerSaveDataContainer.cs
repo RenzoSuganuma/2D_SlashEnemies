@@ -8,4 +8,7 @@ public class PlayerSaveDataContainer
     public float _masterVol;
     public float _bgmVol;
     public float _voiceVol;
+    public int _score;
+    public int _deathcount;
+    public float _elapsedtime;
 }

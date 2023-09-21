@@ -1,8 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 /// <summary>
@@ -47,11 +44,11 @@ public class GameManager : MonoBehaviour
     /// <summary>ボス撃破ＯＢＪ</summary>
     [SerializeField] GameObject _bossDefeatedPanel;
     /// <summary>ゲーム経過時間保持変数</summary>
-    float _elapsedTime = 0;
+    public float _elapsedTime = 0;
     /// <summary>プレイヤースコア</summary>
-    float _playerScore;
+    public int _playerScore = 0;
     /// <summary>死亡カウント</summary>
-    int _pDeathCount = 0;
+    public int _pDeathCount = 0;
     /// <summary>ゲームが一時停止しているかのフラグ</summary>
     bool _isPaused = false;
     private void Start()
@@ -113,7 +110,7 @@ public class GameManager : MonoBehaviour
     }
     /// <summary>プレイヤーのスコアを加算</summary>
     /// <param name="score"></param>
-    public void AddScore(float score)
+    public void AddScore(int score)
     {
         _playerScore += score;
     }
@@ -158,6 +155,7 @@ public class GameManager : MonoBehaviour
     public void GotoGameSceneBoss()
     {
         Time.timeScale = 1;
+        GameObject.FindAnyObjectByType<SettingsManager>().SetDatas();
         SceneManager.LoadScene("GameScene2", LoadSceneMode.Single);
     }
     /// <summary>ゲームシーンの読み込み</summary>

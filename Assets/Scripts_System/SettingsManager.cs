@@ -10,6 +10,9 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Slider _masterSlider;
     [SerializeField] Slider _bgmSlider;
     [SerializeField] Slider _voiceSlider;
+    public int _deathCount = 0;
+    public int _score = 0;
+    public float _elapsedTime = 0;
     /// <summary>名前入力フィールド</summary>
     [SerializeField] InputField _inputFeild;
     /// <summary>プレイヤー名</summary>
@@ -17,7 +20,8 @@ public class SettingsManager : MonoBehaviour
     string jsonData = string.Empty;
     private void Start()
     {
-        if (JsonUtility.FromJson<PlayerSaveDataContainer>(PlayerPrefs.GetString("userDatas")) != null){
+        if (JsonUtility.FromJson<PlayerSaveDataContainer>(PlayerPrefs.GetString("userDatas")) != null)
+        {
             PlayerSaveDataContainer psdc =
                 JsonUtility.FromJson<PlayerSaveDataContainer>(PlayerPrefs.GetString("userDatas"));
             //オーディオミキサー音量の設定
@@ -26,15 +30,26 @@ public class SettingsManager : MonoBehaviour
             _aMixer.SetFloat("VoiceVol", psdc._voiceVol);
             //プレイヤー名設定
             _playerName.text = psdc._playerName;
+            //ゲームマネージャーのデーター初期化
+            var gm = GameObject.FindAnyObjectByType<GameManager>();
+            gm._playerScore = psdc._score;
+            gm._pDeathCount = psdc._deathcount;
+            gm._elapsedTime = psdc._elapsedtime;
         }
     }
     public void SetDatas()
     {
         PlayerSaveDataContainer psdc = new PlayerSaveDataContainer();
-        psdc._playerName = _inputFeild.text;
+        if (_inputFeild != null)
+            psdc._playerName = _inputFeild.text;
         psdc._masterVol = _masterSlider.value;
         psdc._bgmVol = _bgmSlider.value;
         psdc._voiceVol = _voiceSlider.value;
+        //ゲームマネージャーからデーター取得
+        var gm = GameObject.FindAnyObjectByType<GameManager>();
+        psdc._score = gm._playerScore;
+        psdc._deathcount = gm._pDeathCount;
+        psdc._elapsedtime = gm._elapsedTime;
         //JSON化
         jsonData = JsonUtility.ToJson(psdc);
         //データのセーブ
@@ -43,7 +58,7 @@ public class SettingsManager : MonoBehaviour
     }
     public void SetMasterVolume()
     {
-        _aMixer.SetFloat("MasterVol",_masterSlider.value);
+        _aMixer.SetFloat("MasterVol", _masterSlider.value);
     }
     public void SetBGMVolume()
     {
