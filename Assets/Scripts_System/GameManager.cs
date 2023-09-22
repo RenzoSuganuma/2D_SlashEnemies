@@ -104,9 +104,11 @@ public class GameManager : MonoBehaviour
             _nextGate.SetActive(true);
             _gotoNextText.SetActive(true);
         };
-        //死亡原回数
+        //ゲームオーバー処理
         if (_pDeathCount >= _deathLim)
         {
+            //カーソル表示
+            Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0;
             _gameOverOBJ.SetActive(true);
         }

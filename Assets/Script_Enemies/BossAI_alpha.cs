@@ -95,7 +95,8 @@ public class BossAI_alpha : MonoBehaviour
             _bgmSource.Play();
             _sr.material = _hpEndMat;
         }
-        if(this.gameObject.transform.position.y + 5 < _player.transform.position.y)
+        float dThreshord = 9;
+        if(Mathf.Abs(_player.transform.position.y - this.gameObject.transform.position.y) > dThreshord)
         {
             //ワープ処理
             this.gameObject.transform.position =
@@ -126,7 +127,7 @@ public class BossAI_alpha : MonoBehaviour
         //ワープ処理
         this.gameObject.transform.position = 
             _player.transform.position + 
-            new Vector3(UnityEngine.Random.Range(-10, 10), UnityEngine.Random.Range(1, 5), 0);
+            new Vector3(UnityEngine.Random.Range(-10, 10), UnityEngine.Random.Range(0, 3), 0);
         this.gameObject.SetActive(true);
         if (_captured && _insideRange && _attacked && _spelled)
         {
