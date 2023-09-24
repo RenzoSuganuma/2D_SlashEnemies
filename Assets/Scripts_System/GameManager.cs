@@ -2,6 +2,9 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG;
+using DG.Tweening;
+using System;
 /// <summary>
 /// プレイヤーのステータスとゲームのステータスを管理するクラス
 /// </summary>
@@ -11,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _playerHealth;
     /// <summary>次に進めるスコア数</summary>
     [SerializeField] int _scoreGotoNext;
+    /// <summary>ボス戦のシーンの入口</summary>
     [SerializeField] GameObject _nextGate;
     /// <summary>プレイヤー再スポーン時の座標</summary>
     [SerializeField] Transform _pSpawnTransform;
@@ -24,6 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Slider _hpSlider;
     /// <summary>一時停止オブジェクト</summary>
     [SerializeField] GameObject _pausedUI;
+    /// <summary>一時停止のラベル</summary>
+    [SerializeField] Text _pausedLabel;
     /// <summary>プレイヤーオブジェクト</summary>
     [SerializeField] GameObject _playerObj;
     /// <summary>ボスオブジェクト</summary>
@@ -40,10 +46,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text _rankingText;
     /// <summary>残機テキスト</summary>
     [SerializeField] Text _lifeText;
+    /// <summary>ホーム画面のタイトルテキスト</summary>
+    [SerializeField] GameObject _homeTitleText;
+    /// <summary>ホームシーンのフラグ</summary>
+    [SerializeField] bool _isHomeScene;
     /// <summary>次へ進めのテキスト</summary>
     [SerializeField] GameObject _gotoNextText;
     /// <summary>ボス体力スライダー</summary>
     [SerializeField] Slider _bossHpSlider;
+    /// <summary>設定マネージャー</summary>
     [SerializeField] SettingsManager _sm;
     /// <summary>ボス撃破ＯＢＪ</summary>
     [SerializeField] GameObject _bossDefeatedPanel;
@@ -80,11 +91,17 @@ public class GameManager : MonoBehaviour
             _bossHpSlider.maxValue = _bossObj.GetComponent<BossAI_alpha>().GetHP();
             _bossHpSlider.value = _bossObj.GetComponent<BossAI_alpha>().GetHP();
         }
+        //DOTweenでタイトルをTween
+        if (_isHomeScene)
+        {
+            _homeTitleText.transform.DOShakeScale(1, 3, 50, 100, true);
+        }
     }
     private void Update()
     {
         //デルタ秒加算
-        _elapsedTime += Time.deltaTime;
+        if (!_isPaused)
+            _elapsedTime += Time.deltaTime;
         //UIテキストに表示
         _elapsedTimeText.text = _elapsedTime.ToString("F2");
         //スライダーの値の初期化→プレイヤー体力表示
@@ -113,7 +130,7 @@ public class GameManager : MonoBehaviour
             _gameOverOBJ.SetActive(true);
         }
         //残機表示更新
-        _lifeText.text = "残機：" + (_deathLim).ToString();
+        _lifeText.text = $"残機：{(_deathLim - _pDeathCount).ToString()}";
     }
     /// <summary>プレイヤーのリスポーン処理</summary>
     private void Respawn()
@@ -130,7 +147,6 @@ public class GameManager : MonoBehaviour
         _playerObj.SetActive(true);
         //デスカウントを加算
         _pDeathCount++;
-        _deathLim--;
     }
     /// <summary>体力を更新するメソッド。引数に加算する値を代入</summary>
     /// <param name="health"></param>
@@ -147,19 +163,25 @@ public class GameManager : MonoBehaviour
     /// <summary>ゲームの一時停止</summary>
     public void Pause()
     {
+        Debug.Log("一時停止中");
         //カーソル表示
         Cursor.lockState = CursorLockMode.None;
         _isPaused = true;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         _pausedUI.SetActive(true);
+        if (_pausedUI.activeSelf)
+        {
+            Debug.Log("一時停止中ラベル");
+        }
     }
     /// <summary>ゲームの再開</summary>
     public void Resume()
     {
+        Debug.Log("再開");
         //カーソル非表示
         Cursor.lockState = CursorLockMode.Locked;
         _isPaused = false;
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         _pausedUI.SetActive(false);
     }
     /// <summary>ボス死亡時のメソッド</summary>
@@ -197,6 +219,12 @@ public class GameManager : MonoBehaviour
         }
         _rankingText.text = "<color=red>評価</color> : " + $"<color=yellow>{rank}</color>";
     }
+    /// <summary>一時停止フラグ</summary>
+    /// <returns></returns>
+    public bool GetPausedFlag()
+    {
+        return _isPaused;
+    }
     /// <summary>ゲームシーンの読み込み</summary>
     public void GotoGameSceneNormal()
     {
@@ -208,7 +236,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         Debug.Log("ボス戦へ移行");
-        _sm.SetDatas();
+        _sm.SetPlayerDatas();
         SceneManager.LoadScene("GameScene2", LoadSceneMode.Single);
     }
     /// <summary>ゲームシーンの読み込み</summary>

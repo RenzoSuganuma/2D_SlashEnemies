@@ -51,6 +51,9 @@ public class EnemyAI_CORE : MonoBehaviour
     bool _pisPlayerFound = false;
     /// <summary>攻撃をしたかのフラグ</summary>
     bool _attacked = false;
+    /// <summary>ゲームがそうこうしているかのフラグ</summary>
+    bool _isGameRunning = false;
+    GameManager _gm;
     #endregion
     #region デリゲート
     /// <summary>ダメージをくらった時に呼び出されるデリゲート</summary>
@@ -81,6 +84,7 @@ public class EnemyAI_CORE : MonoBehaviour
         _rb2d = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _as = GetComponent<AudioSource>();
+        _gm = GameObject.FindObjectOfType<GameManager>();
         //移動モードによって重力スケールが変動
         _rb2d.gravityScale = (_moveMode == MoveMode.Fly) ? 0 : 1;
         _rb2d.freezeRotation = true;
@@ -90,6 +94,10 @@ public class EnemyAI_CORE : MonoBehaviour
         this.gameObject.layer = 2;
         //プレイヤーの検索
         _player = GameObject.FindGameObjectWithTag("Player");
+    }
+    private void Update()
+    {
+        _isGameRunning = !_gm.GetPausedFlag();
     }
     private void FixedUpdate()
     {
@@ -115,82 +123,85 @@ public class EnemyAI_CORE : MonoBehaviour
         //４．捕捉して、攻撃圏内にプレイヤーがいれば攻撃
         /* = 処理本体 = */
         //パトロール処理
-        #region プレイヤー未捕捉時
-        //プレイヤー未捕捉時
-        if (!_isPlayerFound)
+        if (_isGameRunning)
         {
-            Debug.Log($"目標座標{_targetPath}");
-            //光線のキャスト
-            Ray2D ray = new Ray2D(this.gameObject.transform.position, _targetPath.normalized * _rayLength);
-            RaycastHit2D hit2d = Physics2D.Raycast(ray.origin, ray.direction, 1 * _rayLength);
-            Debug.DrawRay(ray.origin, ray.direction, Color.green);
-            if (hit2d.collider)
+            #region プレイヤー未捕捉時
+            //プレイヤー未捕捉時
+            if (!_isPlayerFound)
             {
-                Debug.Log($"レイヤー：{hit2d.collider.gameObject.layer}");
-                if (hit2d.collider.gameObject.layer == _repathLayer)
+                Debug.Log($"目標座標{_targetPath}");
+                //光線のキャスト
+                Ray2D ray = new Ray2D(this.gameObject.transform.position, _targetPath.normalized * _rayLength);
+                RaycastHit2D hit2d = Physics2D.Raycast(ray.origin, ray.direction, 1 * _rayLength);
+                Debug.DrawRay(ray.origin, ray.direction, Color.green);
+                if (hit2d.collider)
                 {
-                    RePath();
-                    Debug.Log($"目標座標更新{hit2d.collider.gameObject.name}");
+                    Debug.Log($"レイヤー：{hit2d.collider.gameObject.layer}");
+                    if (hit2d.collider.gameObject.layer == _repathLayer)
+                    {
+                        RePath();
+                        Debug.Log($"目標座標更新{hit2d.collider.gameObject.name}");
+                    }
+                }
+                _rb2d.AddForce(_targetPath.normalized * _ms, ForceMode2D.Force);
+            }
+            else
+            {
+                _rb2d.AddForce(_targetPath.normalized * _ms * 2, ForceMode2D.Force);
+            }
+            #endregion
+            #region プレイヤー発見処理
+            //プレイヤー発見処理
+            if (Vector2.Distance(this.gameObject.transform.position,
+                _player.transform.position) < _playerCaptureDistance)
+            {
+                _isPlayerFound = true;
+                //デリゲート呼び出し
+                if (_isPlayerFound && !_pisPlayerFound)
+                {
+                    playerCapturedEvent(_anim);
+                    _pisPlayerFound = true;
+                }
+                var this2player = _player.transform.position - this.gameObject.transform.position;
+                //移動モードによってベクトルを変更
+                switch (_moveMode)
+                {
+                    case MoveMode.Walk:
+                        {
+                            _targetPath = new Vector2(this2player.x, 0);
+                            break;
+                        }
+                    case MoveMode.Fly:
+                        {
+                            _targetPath = this2player;
+                            break;
+                        }
                 }
             }
-            _rb2d.AddForce(_targetPath.normalized * _ms, ForceMode2D.Force);
-        }
-        else
-        {
-            _rb2d.AddForce(_targetPath.normalized * _ms * 2, ForceMode2D.Force);
-        }
-        #endregion
-        #region プレイヤー発見処理
-        //プレイヤー発見処理
-        if (Vector2.Distance(this.gameObject.transform.position,
-            _player.transform.position) < _playerCaptureDistance)
-        {
-            _isPlayerFound = true;
-            //デリゲート呼び出し
-            if (_isPlayerFound && !_pisPlayerFound)
+            else
             {
-                playerCapturedEvent(_anim);
-                _pisPlayerFound = true;
+                _isPlayerFound = false;
+                //デリゲート呼び出し
+                if (!_isPlayerFound && _pisPlayerFound)
+                {
+                    playerMissedEvent(_anim);
+                    _pisPlayerFound = false;
+                }
             }
-            var this2player = _player.transform.position - this.gameObject.transform.position;
-            //移動モードによってベクトルを変更
-            switch (_moveMode)
+            //攻撃処理
+            if (_isPlayerFound && Vector2.Distance(this.gameObject.transform.position,
+                _player.transform.position) < _attackDistance && !_attacked)
             {
-                case MoveMode.Walk:
-                    {
-                        _targetPath = new Vector2(this2player.x, 0);
-                        break;
-                    }
-                case MoveMode.Fly:
-                    {
-                        _targetPath = this2player;
-                        break;
-                    }
+                //デリゲート呼び出し
+                attackingEvent(_anim);
+                //効果音
+                _as.PlayOneShot(_attackV);
+                //フラグを立てる
+                _attacked = true;
+                StartCoroutine(WaitForEndOfAttack(3));
             }
+            #endregion
         }
-        else
-        {
-            _isPlayerFound = false;
-            //デリゲート呼び出し
-            if (!_isPlayerFound && _pisPlayerFound)
-            {
-                playerMissedEvent(_anim);
-                _pisPlayerFound = false;
-            }
-        }
-        //攻撃処理
-        if (_isPlayerFound && Vector2.Distance(this.gameObject.transform.position,
-            _player.transform.position) < _attackDistance && !_attacked)
-        {
-            //デリゲート呼び出し
-            attackingEvent(_anim);
-            //効果音
-            _as.PlayOneShot(_attackV);
-            //フラグを立てる
-            _attacked = true;
-            StartCoroutine(WaitForEndOfAttack(3));
-        }
-        #endregion
     }
     /// <summary>死亡時の効果音再生</summary>
     public void PlayDeathVoice()

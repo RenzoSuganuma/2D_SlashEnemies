@@ -57,7 +57,8 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
     [SerializeField] Text _getsugaText;
     /// <summary>月牙天衝の残数</summary>
     int _getsugaCnt;
-
+    /// <summary>一時停止してるかのフラグ</summary>
+    bool _isGameRunning = false;
     private void Awake()
     {
         //デバイス入力プロバイダーを取得
@@ -102,10 +103,17 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
         _input.onActionTriggered -= OnPause;
         _input.onActionTriggered -= OnAim;
     }
+    private void Update()
+    {
+        _isGameRunning = !_gm.GetPausedFlag();
+    }
     private void FixedUpdate()
     {
-        PlayerMoveSequence();
-        PlayerJumpSequence();
+        if (_isGameRunning)
+        {
+            PlayerMoveSequence();
+            PlayerJumpSequence();
+        } 
         //月牙天衝残数表示
         _getsugaText.text = (_getsugaCnt / 2).ToString();
     }

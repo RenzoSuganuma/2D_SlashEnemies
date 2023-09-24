@@ -32,6 +32,9 @@ public class SettingsManager : MonoBehaviour
         _aMixer.SetFloat("MasterVol", psdc._masterVol);
         _aMixer.SetFloat("BGMVol", psdc._bgmVol);
         _aMixer.SetFloat("VoiceVol", psdc._voiceVol);
+        _masterSlider.value = psdc._masterVol;
+        _bgmSlider.value = psdc._bgmVol;
+        _voiceSlider.value = psdc._voiceVol;
         //プレイヤー名設定
         _playerName.text = psdc._playerName;
         //ゲームマネージャーのデーター初期化
@@ -69,6 +72,41 @@ public class SettingsManager : MonoBehaviour
         psdc._bgmVol = _bgmSlider.value;
         psdc._voiceVol = _voiceSlider.value;
         //ゲームマネージャーからデーター取得
+        Debug.Log($"GMからのデータ{_gm._playerScore},{_gm._pDeathCount},{_gm._elapsedTime}");
+        psdc._score = int.Parse(_pScr.text);
+        psdc._deathcount = int.Parse(_dCnt.text);
+        psdc._elapsedtime = float.Parse(_eTime.text);
+        //JSON化
+        jsonData = JsonUtility.ToJson(psdc);
+        //データ書き込み
+        StreamWriter writer = new StreamWriter(Application.dataPath + "/test.json");
+        writer.WriteLine(jsonData);
+        writer.Flush();
+        writer.Close();
+    }
+    public void SetPlayerDatas()
+    {
+        //データ読み込み
+        StreamReader reader = new StreamReader(Application.dataPath + "/test.json");
+        string data = reader.ReadToEnd();
+        reader.Close();
+        PlayerSaveDataContainer psdcFromJson =
+            JsonUtility.FromJson<PlayerSaveDataContainer>(data);
+        Debug.Log($"psdcFromJSON：{data}");
+        //データ初期化とインスタンス化
+        PlayerSaveDataContainer psdc = new PlayerSaveDataContainer();
+        psdc._playerName = _playerName.text;
+        //音量の値の比較と初期化
+        psdc._masterVol = 
+            (psdcFromJson._masterVol != psdc._masterVol) 
+            ? _masterSlider.value : psdcFromJson._masterVol;
+        psdc._bgmVol = 
+            (psdcFromJson._bgmVol != psdc._bgmVol) 
+            ? _bgmSlider.value : psdcFromJson._bgmVol;
+        psdc._voiceVol = 
+            (psdcFromJson._voiceVol != psdc._voiceVol) 
+            ? _voiceSlider.value : psdcFromJson._voiceVol;
+        //ゲームマネージャーからデーター取得と初期化
         Debug.Log($"GMからのデータ{_gm._playerScore},{_gm._pDeathCount},{_gm._elapsedTime}");
         psdc._score = int.Parse(_pScr.text);
         psdc._deathcount = int.Parse(_dCnt.text);
