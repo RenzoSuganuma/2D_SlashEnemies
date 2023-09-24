@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-
 [RequireComponent (typeof(Animator))]
 [RequireComponent (typeof(Rigidbody2D))]
 /// <summary> “GƒLƒƒƒ‰‚ÌAI‚ÌƒRƒA </summary>

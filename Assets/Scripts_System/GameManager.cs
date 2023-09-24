@@ -167,11 +167,11 @@ public class GameManager : MonoBehaviour
         //カーソル表示
         Cursor.lockState = CursorLockMode.None;
         _isPaused = true;
-        //Time.timeScale = 0;
         _pausedUI.SetActive(true);
         if (_pausedUI.activeSelf)
         {
             Debug.Log("一時停止中ラベル");
+            _pausedLabel.rectTransform.DOScale(new Vector3(2, 2, 2), 1).SetLoops(-1, LoopType.Yoyo);
         }
     }
     /// <summary>ゲームの再開</summary>
@@ -181,7 +181,6 @@ public class GameManager : MonoBehaviour
         //カーソル非表示
         Cursor.lockState = CursorLockMode.Locked;
         _isPaused = false;
-        //Time.timeScale = 1;
         _pausedUI.SetActive(false);
     }
     /// <summary>ボス死亡時のメソッド</summary>

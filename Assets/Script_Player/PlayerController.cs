@@ -233,7 +233,7 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
     }
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.action.name == "Fire")
+        if (context.action.name == "Fire" && _isGameRunning)
         {
             Debug.Log("Fire");
             //アニメーション再生
@@ -290,7 +290,7 @@ public class PlayerController : MonoBehaviour, PlayerInputs.IPlayerActions
     {
         if (context.action.name == "Aim")
         {
-            if (context.ReadValueAsButton() && 0 < _getsugaCnt)
+            if (context.ReadValueAsButton() && 0 < _getsugaCnt && _isGameRunning)
             {
                 Debug.Log("シフト攻撃");
                 _mc.ActionShiftAttack();
