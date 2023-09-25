@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     public int _pDeathCount = 0;
     /// <summary>ゲームが一時停止しているかのフラグ</summary>
     bool _isPaused = false;
+    [SerializeField] Transform _bossRespawnPos;
     private void Start()
     {
         //マウスカーソルロック
@@ -147,6 +148,8 @@ public class GameManager : MonoBehaviour
         _playerObj.SetActive(true);
         //デスカウントを加算
         _pDeathCount++;
+        //ボス座標をプレイヤから離す
+        GameObject.FindAnyObjectByType<BossAI_alpha>().transform.position = _bossRespawnPos.position;
     }
     /// <summary>体力を更新するメソッド。引数に加算する値を代入</summary>
     /// <param name="health"></param>

@@ -1006,7 +1006,7 @@ Transform:
   m_GameObject: {fileID: 506649795}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.23, y: 4.41, z: -10.1866}
+  m_LocalPosition: {x: -7.25, y: 2.55, z: -10.1866}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -59834,7 +59834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172978713351325156, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
       propertyPath: _playerCapturedDistance
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5918922394548389386, guid: 7f5ec8538d077e84d8a4180561290888, type: 3}
       propertyPath: m_Name
@@ -60758,6 +60758,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2145724127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2145724128}
+  m_Layer: 0
+  m_Name: BossRespawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2145724128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145724127}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 69.8, y: -0.29, z: 0.027503677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &671303505701580381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61296,6 +61327,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 691482478}
     - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
+      propertyPath: _bossRespawnPos
+      value: 
+      objectReference: {fileID: 2145724128}
+    - target: {fileID: 5505835696639674485, guid: 37021a317b944244cb7620f7058dadf7, type: 3}
       propertyPath: _deathcountText
       value: 
       objectReference: {fileID: 1927867367}
@@ -61422,3 +61457,4 @@ SceneRoots:
   - {fileID: 1100858062}
   - {fileID: 719940187}
   - {fileID: 156303322}
+  - {fileID: 2145724128}

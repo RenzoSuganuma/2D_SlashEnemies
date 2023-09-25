@@ -60,6 +60,8 @@ public class BossAI_alpha : MonoBehaviour
     int _spellCnt = 0;
     /// <summary>累積ダメージ量</summary>
     float _totalDamages = 0;
+    /// <summary>ゲーム走行中フラグ</summary>
+    bool _isGameRunning = false;
     //プレイヤー捕捉、待機ステート
     //通常攻撃、魔法攻撃
     //被攻撃、死亡
@@ -103,6 +105,7 @@ public class BossAI_alpha : MonoBehaviour
                 _player.transform.position +
                 new Vector3(UnityEngine.Random.Range(-1, 1), _player.transform.position.y, 0);
         }
+        _isGameRunning = !GameObject.FindAnyObjectByType<GameManager>().GetPausedFlag();
     }
     /// <summary>死亡時処理</summary>
     void DeathBehaviour()
@@ -143,34 +146,37 @@ public class BossAI_alpha : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Debug.Log($"{this.gameObject.name} : プレイヤー捕捉");
-        //捕捉状態更新
-        _captured = Vector2.Distance(_player.transform.position,
-        this.transform.position) < _playerCapturedDistance;
-        //攻撃範囲内に居るかの判定
-        _insideRange = Vector2.Distance(_player.transform.position,
-        this.transform.position) < _attackRange && _captured;
-        //アニメーター
-        _anim.SetBool("Moving", _captured);
-        if (_captured)
+        if (_isGameRunning)
         {
-            //目標へのベクトルの算出
-            var tv = (_player.transform.position - this.transform.position).normalized;
-            //画像フリップ処理
-            _sr.flipX = tv.x > 0;
-            //その方向へ向かう
-            _rb2d.AddForce(tv * _moveSpeed, ForceMode2D.Force);
-        }
-        if (_insideRange && !_attacked)
-        {
-            //攻撃処理
-            StartCoroutine(AttackRoutine(3));
-        }//攻撃圏内から外れ、魔法の射程内にいるとき
-        else if (_captured && Vector2.Distance(_player.transform.position,
-            this.transform.position) < _spellRange && !_spelled && _spellCnt < _spellLim)
-        {
-            //呪文処理
-            StartCoroutine(SpellRoutine(3));
+            Debug.Log($"{this.gameObject.name} : プレイヤー捕捉");
+            //捕捉状態更新
+            _captured = Vector2.Distance(_player.transform.position,
+            this.transform.position) < _playerCapturedDistance;
+            //攻撃範囲内に居るかの判定
+            _insideRange = Vector2.Distance(_player.transform.position,
+            this.transform.position) < _attackRange && _captured;
+            //アニメーター
+            _anim.SetBool("Moving", _captured);
+            if (_captured)
+            {
+                //目標へのベクトルの算出
+                var tv = (_player.transform.position - this.transform.position).normalized;
+                //画像フリップ処理
+                _sr.flipX = tv.x > 0;
+                //その方向へ向かう
+                _rb2d.AddForce(tv * _moveSpeed, ForceMode2D.Force);
+            }
+            if (_insideRange && !_attacked)
+            {
+                //攻撃処理
+                StartCoroutine(AttackRoutine(3));
+            }//攻撃圏内から外れ、魔法の射程内にいるとき
+            else if (_captured && Vector2.Distance(_player.transform.position,
+                this.transform.position) < _spellRange && !_spelled && _spellCnt < _spellLim)
+            {
+                //呪文処理
+                StartCoroutine(SpellRoutine(3));
+            }
         }
     }
     /// <summary>通常攻撃ルーチン</summary>
